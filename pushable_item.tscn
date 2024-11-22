@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3k1gicobt3tq"]
+
+[ext_resource type="Texture2D" uid="uid://ct1jc34pxon3t" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile020.png" id="1_hv66l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jetfv"]
+size = Vector2(64, 64)
+
+[node name="PushableItem" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hv66l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jetfv")
