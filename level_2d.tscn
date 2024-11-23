@@ -25,7 +25,7 @@ fill_to = Vector2(0.5, 0)
 
 [node name="Level2D" type="Node2D" node_paths=PackedStringArray("players")]
 script = ExtResource("1_7gmnr")
-players = [NodePath("RigidPlayerPlatformer2D"), NodePath("RigidPlayerPlatformer2D2")]
+players = [NodePath("RigidPlayerPlatformer2D"), NodePath("RigidPlayerPlatformer2D2"), NodePath("RigidPlayerPlatformer2D3")]
 
 [node name="Background" parent="." instance=ExtResource("5_fa20c")]
 
@@ -119,15 +119,21 @@ horizontal_alignment = 1
 
 [node name="RigidPlayerPlatformer2D" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(1191, 1123)
+position = Vector2(913, 824)
 collision_layer = 3
-player_prefix = "p1_"
+player_prefix = "p4_"
 
 [node name="RigidPlayerPlatformer2D2" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(1298, 1123)
+position = Vector2(822, 814)
 collision_layer = 3
-player_prefix = "p2_"
+player_prefix = "p5_"
+
+[node name="RigidPlayerPlatformer2D3" parent="." instance=ExtResource("3_jt5jw")]
+modulate = Color(0.627451, 1, 1, 1)
+position = Vector2(637, 857)
+collision_layer = 3
+player_prefix = "p6_"
 
 [node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
 position = Vector2(1542, 789)
@@ -144,7 +150,7 @@ metadata/_edit_lock_ = true
 [node name="Parallax2D" type="Parallax2D" parent="Killzone"]
 scroll_offset = Vector2(0, -512)
 repeat_size = Vector2(2048, 0)
-repeat_times = 2
+repeat_times = 10
 
 [node name="TextureRect" type="TextureRect" parent="Killzone/Parallax2D"]
 offset_right = 64.0
