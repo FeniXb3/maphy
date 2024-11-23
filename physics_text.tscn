@@ -7,7 +7,7 @@ bounce = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svpah"]
 resource_local_to_scene = true
-size = Vector2(140.17, 42.515)
+size = Vector2(10, 10)
 
 [node name="PhysicsText" type="RigidBody2D"]
 position = Vector2(-1, 1)
@@ -41,8 +41,9 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(40, 15)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Shrew"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

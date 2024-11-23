@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=10 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
 [ext_resource type="Texture2D" uid="uid://lyi4ewofiiqe" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile004.png" id="2_c1082"]
@@ -6,6 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://bongqq32sufnv" path="res://physics_text.tscn" id="4_6moah"]
 [ext_resource type="PackedScene" uid="uid://d3k1gicobt3tq" path="res://pushable_item.tscn" id="4_c3yco"]
 [ext_resource type="PackedScene" uid="uid://bnxh5txmnw1wo" path="res://background.tscn" id="5_fa20c"]
+[ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="7_c4bdb"]
+
+[sub_resource type="Gradient" id="Gradient_bxs5i"]
+offsets = PackedFloat32Array(0.276151, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gctcs"]
+gradient = SubResource("Gradient_bxs5i")
+width = 2048
+height = 1024
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
 
 [node name="Level2D" type="Node2D"]
 
@@ -13,34 +25,44 @@
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Platform2D" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(1381, 1279)
-scale = Vector2(100, 1)
-visual_scale = Vector2(100, 1)
+[node name="FirtSegment" type="Node2D" parent="Platforms"]
 
-[node name="Platform2D2" parent="Platforms" instance=ExtResource("2_0dtv0")]
+[node name="GroundPlatform2D" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(128, 1280)
+scale = Vector2(40, 1)
+visual_scale = Vector2(40, 1)
+
+[node name="Platform2D2" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(921, 937)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
-[node name="Platform2D3" parent="Platforms" instance=ExtResource("2_0dtv0")]
+[node name="Platform2D3" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(640, 1033)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
-[node name="Platform2D4" parent="Platforms" instance=ExtResource("2_0dtv0")]
+[node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(363, 1140)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
-[node name="Platform2D6" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(1768, 1182)
-scale = Vector2(4, 2)
-visual_scale = Vector2(4, 2)
+[node name="SecondSegment" type="Node2D" parent="Platforms"]
+position = Vector2(64, 0)
+
+[node name="GroundPlatform2D2" parent="Platforms/SecondSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(2880, 1280)
+scale = Vector2(40, 1)
+visual_scale = Vector2(40, 1)
+
+[node name="Platform2D6" parent="Platforms/SecondSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(1728, 1216)
+scale = Vector2(4, 3)
+visual_scale = Vector2(4, 3)
 texture = ExtResource("2_c1082")
 
-[node name="Platform2D7" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(1768, 1086)
+[node name="Platform2D7" parent="Platforms/SecondSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(1728, 1088)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
@@ -73,7 +95,8 @@ metadata/_edit_lock_ = true
 
 [node name="RigidPlayerPlatformer2D" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(587, 1179)
+position = Vector2(887, 819)
+collision_layer = 3
 
 [node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
 position = Vector2(1426, 782)
@@ -81,3 +104,19 @@ physics_material_override = null
 freeze = true
 text = "Matematyka i fizyka w służbie twórców gier"
 color = Color(0.714025, 0.164314, 0.748918, 1)
+
+[node name="Killzone" parent="." instance=ExtResource("7_c4bdb")]
+position = Vector2(1528, 1927)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="Killzone"]
+scroll_offset = Vector2(0, -512)
+repeat_size = Vector2(2048, 0)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Killzone/Parallax2D"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_gctcs")
+metadata/_edit_use_anchors_ = true
