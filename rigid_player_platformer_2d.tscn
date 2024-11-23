@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://86nioqfghter"]
+[gd_scene load_steps=12 format=3 uid="uid://86nioqfghter"]
 
 [ext_resource type="Script" path="res://rigid_player_platformer_2d.gd" id="1_jwyup"]
 [ext_resource type="Texture2D" uid="uid://b8hoyi14314g" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_idle.png" id="1_wad00"]
@@ -6,7 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://xrc1y6hkron7" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_walk2.png" id="4_oeoia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8h5q"]
-size = Vector2(52, 66)
+size = Vector2(45, 55)
+
+[sub_resource type="Animation" id="Animation_krwp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_wad00")]
+}
 
 [sub_resource type="Animation" id="Animation_bhb00"]
 resource_name = "idle"
@@ -26,27 +41,20 @@ tracks/0/keys = {
 "values": [ExtResource("3_iah70"), ExtResource("4_oeoia")]
 }
 
-[sub_resource type="Animation" id="Animation_krwp3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_wad00")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1a7ed"]
 _data = {
 "RESET": SubResource("Animation_krwp3"),
 "idle": SubResource("Animation_bhb00"),
 "walk": SubResource("Animation_1wq7o")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dmm87"]
+radius = 5.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vx2m1"]
+radius = 6.0
+height = 42.0
 
 [node name="RigidPlayerPlatformer2D" type="RigidBody2D"]
 z_index = 2
@@ -60,7 +68,7 @@ unique_name_in_owner = true
 texture = ExtResource("1_wad00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15)
+position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_s8h5q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -86,3 +94,16 @@ position = Vector2(23, 30)
 target_position = Vector2(0, 25)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(21, 9)
+shape = SubResource("CapsuleShape2D_dmm87")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-22, 9)
+shape = SubResource("CapsuleShape2D_dmm87")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, 42)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vx2m1")
