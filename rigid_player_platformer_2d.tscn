@@ -94,7 +94,7 @@ position = Vector2(23, 30)
 target_position = Vector2(0, 25)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_bottom = 1800
+limit_bottom = 2000
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
