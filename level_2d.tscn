@@ -1,52 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=7 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
+[ext_resource type="Texture2D" uid="uid://lyi4ewofiiqe" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile004.png" id="2_c1082"]
 [ext_resource type="PackedScene" uid="uid://86nioqfghter" path="res://rigid_player_platformer_2d.tscn" id="3_jt5jw"]
+[ext_resource type="PackedScene" uid="uid://bongqq32sufnv" path="res://physics_text.tscn" id="4_6moah"]
 [ext_resource type="PackedScene" uid="uid://d3k1gicobt3tq" path="res://pushable_item.tscn" id="4_c3yco"]
+[ext_resource type="PackedScene" uid="uid://bnxh5txmnw1wo" path="res://background.tscn" id="5_fa20c"]
 
 [node name="Level2D" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("5_fa20c")]
 
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform2D" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(613, 522)
+position = Vector2(1381, 1279)
 scale = Vector2(100, 1)
 visual_scale = Vector2(100, 1)
 
 [node name="Platform2D2" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(153, 180)
+position = Vector2(921, 937)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D3" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(-128, 276)
+position = Vector2(640, 1033)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D4" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(-405, 383)
-scale = Vector2(4, 1)
-visual_scale = Vector2(4, 1)
-
-[node name="Platform2D5" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(1000, 457)
+position = Vector2(363, 1140)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D6" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(1000, 393)
+position = Vector2(1768, 1182)
+scale = Vector2(4, 2)
+visual_scale = Vector2(4, 2)
+texture = ExtResource("2_c1082")
+
+[node name="Platform2D7" parent="Platforms" instance=ExtResource("2_0dtv0")]
+position = Vector2(1768, 1086)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
-[node name="Platform2D7" parent="Platforms" instance=ExtResource("2_0dtv0")]
-position = Vector2(1000, 329)
-scale = Vector2(4, 1)
-visual_scale = Vector2(4, 1)
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 1158.0
+offset_top = 706.0
+offset_right = 1745.0
+offset_bottom = 745.0
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLarge"
+text = "Matematyka i fizyka w służbie twórców gier"
 
 [node name="Items" type="Node" parent="."]
 
 [node name="PushableItem" parent="Items" instance=ExtResource("4_c3yco")]
-position = Vector2(244, 99)
+position = Vector2(1012, 856)
 mass = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -60,12 +71,13 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"HeaderLarge"
-text = "Matematyka i fizyka w służbie twórców gier"
-
 [node name="RigidPlayerPlatformer2D" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(-181, 422)
+position = Vector2(587, 1179)
+
+[node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
+position = Vector2(1426, 782)
+physics_material_override = null
+freeze = true
+text = "Matematyka i fizyka w służbie twórców gier"
+color = Color(0.714025, 0.164314, 0.748918, 1)

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bcyl1cgf4x53w"]
+
+[sub_resource type="SystemFont" id="SystemFont_6opnr"]
+
+[resource]
+RichTextLabel/font_sizes/normal_font_size = 30
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_6opnr")
