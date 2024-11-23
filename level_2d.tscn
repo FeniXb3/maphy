@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=13 format=3 uid="uid://220yfem0cjvb"]
 
+[ext_resource type="Script" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
 [ext_resource type="Texture2D" uid="uid://lyi4ewofiiqe" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile004.png" id="2_c1082"]
 [ext_resource type="PackedScene" uid="uid://86nioqfghter" path="res://rigid_player_platformer_2d.tscn" id="3_jt5jw"]
@@ -7,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d3k1gicobt3tq" path="res://pushable_item.tscn" id="4_c3yco"]
 [ext_resource type="PackedScene" uid="uid://bnxh5txmnw1wo" path="res://background.tscn" id="5_fa20c"]
 [ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="7_c4bdb"]
+[ext_resource type="PackedScene" uid="uid://livk8ysuwju3" path="res://collectable_item.tscn" id="9_vkmia"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l6jl3"]
 
 [sub_resource type="Gradient" id="Gradient_bxs5i"]
 offsets = PackedFloat32Array(0.276151, 1)
@@ -20,6 +24,7 @@ fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
 [node name="Level2D" type="Node2D"]
+script = ExtResource("1_7gmnr")
 
 [node name="Background" parent="." instance=ExtResource("5_fa20c")]
 
@@ -43,6 +48,24 @@ scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(363, 1140)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
+[node name="FirtSegment2" type="Node2D" parent="Platforms"]
+position = Vector2(2225, 4)
+
+[node name="Platform2D2" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
+position = Vector2(921, 937)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
+[node name="Platform2D3" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
+position = Vector2(640, 1033)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
+[node name="Platform2D4" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
 position = Vector2(363, 1140)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
@@ -81,9 +104,9 @@ text = "Matematyka i fizyka w służbie twórców gier"
 [node name="PushableItem" parent="Items" instance=ExtResource("4_c3yco")]
 position = Vector2(1012, 856)
 mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -93,13 +116,23 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+
 [node name="RigidPlayerPlatformer2D" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(887, 819)
+position = Vector2(1191, 1123)
 collision_layer = 3
 
 [node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
-position = Vector2(1426, 782)
+position = Vector2(1542, 789)
 physics_material_override = null
 freeze = true
 text = "Matematyka i fizyka w służbie twórców gier"
@@ -120,3 +153,6 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = SubResource("GradientTexture2D_gctcs")
 metadata/_edit_use_anchors_ = true
+
+[node name="CollectableItem" parent="." instance=ExtResource("9_vkmia")]
+position = Vector2(360, 995)
