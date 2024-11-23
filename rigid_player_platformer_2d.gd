@@ -6,7 +6,7 @@ extends RigidBody2D
 @onready var center_ray_cast_2d: RayCast2D = %CenterRayCast2D
 @onready var right_ray_cast_2d: RayCast2D = %RightRayCast2D
 
-
+@export var player_prefix: String
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 
@@ -19,11 +19,11 @@ func _physics_process(delta: float) -> void:
 	
 	var is_touching_ground: bool = left_ray_cast_2d.is_colliding() or center_ray_cast_2d.is_colliding() or right_ray_cast_2d.is_colliding()
 	
-	if Input.is_action_just_pressed("jump") and is_touching_ground:
+	if Input.is_action_just_pressed("%sjump" % player_prefix) and is_touching_ground:
 		linear_velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("move_left", "move_right")
+	var direction := Input.get_axis("%smove_left" % player_prefix, "%smove_right" % player_prefix)
 	if direction:
 		#set_axis_velocity(Vector2(direction * SPEED, linear_velocity.y))
 		last_direction = direction
