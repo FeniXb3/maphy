@@ -21,6 +21,9 @@ func _process(delta: float) -> void:
 	maxv = players[0].position
 	
 	for p in players:
+		if p == null:
+			continue
+			
 		if p.position.x < minv.x:
 			minv.x = p.position.x
 		if p.position.x > maxv.x:
@@ -30,7 +33,7 @@ func _process(delta: float) -> void:
 		if p.position.y > maxv.y:
 			maxv.y = p.position.y
 	
-	var positions_summed: Vector2 = players.reduce(func(accum, player:RigidBody2D): return accum + player.position, Vector2())
+	var positions_summed: Vector2 = players.reduce(func(accum, player:RigidBody2D): return accum + player.position if player != null else accum, Vector2())
 	var positions_subtracted: Vector2 =  minv - maxv
 	var camera_position = (minv+maxv)/2
 	camera_2d.position = camera_position

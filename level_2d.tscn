@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=14 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="Script" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bongqq32sufnv" path="res://physics_text.tscn" id="4_6moah"]
 [ext_resource type="PackedScene" uid="uid://d3k1gicobt3tq" path="res://pushable_item.tscn" id="4_c3yco"]
 [ext_resource type="PackedScene" uid="uid://bnxh5txmnw1wo" path="res://background.tscn" id="5_fa20c"]
+[ext_resource type="Texture2D" uid="uid://dp44ec8tytbtg" path="res://kenney_simplified-platformer-pack/PNG/Items/platformPack_item002.png" id="6_m5yt4"]
 [ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="7_c4bdb"]
 [ext_resource type="PackedScene" uid="uid://livk8ysuwju3" path="res://collectable_item.tscn" id="9_vkmia"]
 
@@ -47,6 +48,9 @@ visual_scale = Vector2(4, 1)
 position = Vector2(640, 1033)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
+
+[node name="Platform2D5" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(334, 878)
 
 [node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(363, 1140)
@@ -94,7 +98,7 @@ visual_scale = Vector2(4, 1)
 
 [node name="PushableItem" parent="Items" instance=ExtResource("4_c3yco")]
 position = Vector2(1012, 856)
-mass = 10.0
+mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_l6jl3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -110,7 +114,14 @@ metadata/_edit_lock_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_m5yt4")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -119,21 +130,21 @@ horizontal_alignment = 1
 
 [node name="RigidPlayerPlatformer2D" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(913, 824)
+position = Vector2(1109, 992)
 collision_layer = 3
-player_prefix = "p4_"
+player_prefix = "p1_"
 
 [node name="RigidPlayerPlatformer2D2" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(822, 814)
+position = Vector2(1109, 992)
 collision_layer = 3
-player_prefix = "p5_"
+player_prefix = "p2_"
 
 [node name="RigidPlayerPlatformer2D3" parent="." instance=ExtResource("3_jt5jw")]
 modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(637, 857)
+position = Vector2(1109, 992)
 collision_layer = 3
-player_prefix = "p6_"
+player_prefix = "p3_"
 
 [node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
 position = Vector2(1542, 789)

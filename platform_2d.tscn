@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://k7i7h1pws5ba"]
+[gd_scene load_steps=7 format=3 uid="uid://k7i7h1pws5ba"]
 
 [ext_resource type="Texture2D" uid="uid://bbmj67m3raf5f" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile001.png" id="1_4x161"]
 [ext_resource type="Script" path="res://platform_2d.gd" id="1_t8n7d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xus6b"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8usuo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uut0l"]
 size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8usuo"]
+size = Vector2(56, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m40fw"]
+radius = 4.0
 
 [node name="Platform2D" type="StaticBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_xus6b")
@@ -22,4 +28,36 @@ uv = PackedVector2Array(0, 64, 0, 0, 64, 0, 64, 64)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uut0l")
+
+[node name="Node" type="Node2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Node"]
+process_mode = 4
 shape = SubResource("RectangleShape2D_8usuo")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node"]
+process_mode = 4
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_8usuo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node"]
+process_mode = 4
+position = Vector2(28, -28)
+shape = SubResource("CircleShape2D_m40fw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node"]
+process_mode = 4
+position = Vector2(-28, -28)
+shape = SubResource("CircleShape2D_m40fw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node"]
+process_mode = 4
+position = Vector2(28, 28)
+shape = SubResource("CircleShape2D_m40fw")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node"]
+process_mode = 4
+position = Vector2(-28, 28)
+shape = SubResource("CircleShape2D_m40fw")
