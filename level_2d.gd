@@ -4,6 +4,8 @@ extends Node2D
 @onready var score_label: Label = %ScoreLabel
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var background: Node2D = $Background
+@onready var spawn_point: Marker2D = %SpawnPoint
+
 
 var points: int = 0
 
@@ -20,6 +22,7 @@ var points: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.add_score.connect(add_point)
+	camera_2d.position = spawn_point.position
 
 func _input(event: InputEvent) -> void:
 	for i in range(1, maximum_players+1):
@@ -34,6 +37,7 @@ func _input(event: InputEvent) -> void:
 				player.player_prefix = prefix
 				player.color = colors[i-1]
 				add_child(player)
+				player.position = spawn_point.position
 				player_numbers_taken.append(i)
 				players.append(player)
 				update_camera()

@@ -169,3 +169,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1182, 1083)
