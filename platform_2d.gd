@@ -1,5 +1,5 @@
 @tool
-extends StaticBody2D
+extends PhysicsBody2D
 @onready var visuals: Polygon2D = %Visuals
 
 @export var visual_scale: Vector2 = Vector2.ONE:

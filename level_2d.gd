@@ -5,6 +5,8 @@ extends Node2D
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var background: Node2D = $Background
 
+@export  var moving_platform: AnimatableBody2D
+
 @export var player_joiner: PlayerJoiner
 @export var spawn_point: Marker2D
 
@@ -18,7 +20,7 @@ var points: int = 0
 func _ready() -> void:
 	SignalBus.add_score.connect(add_point)
 	SignalBus.body_killed.connect(handle_body_killed)
-
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene();
