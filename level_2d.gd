@@ -15,16 +15,17 @@ var points: int = 0
 @export var colors: Array[Color]
 @export var actions: Array[String] = ["move_left", "move_right", "jump"]
 @export var player_numbers_taken: Array[int] = []
-@export var minv: Vector2# = players[0].position
-@export var maxv: Vector2# = players[0].position
-
+@export var minv: Vector2
+@export var maxv: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.add_score.connect(add_point)
-	camera_2d.position = spawn_point.position
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene();
+	
 	for i in range(1, maximum_players+1):
 		if i in player_numbers_taken:
 			continue

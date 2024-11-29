@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://86nioqfghter"]
+[gd_scene load_steps=11 format=3 uid="uid://86nioqfghter"]
 
 [ext_resource type="Script" path="res://rigid_player_platformer_2d.gd" id="1_jwyup"]
 [ext_resource type="Texture2D" uid="uid://b8hoyi14314g" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_idle.png" id="1_wad00"]
@@ -51,9 +51,6 @@ _data = {
 "walk": SubResource("Animation_1wq7o")
 }
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_bkrt7"]
-length = 22.0
-
 [node name="RigidPlayerPlatformer2D" type="RigidBody2D"]
 z_index = 2
 collision_layer = 3
@@ -92,8 +89,3 @@ target_position = Vector2(0, 25)
 unique_name_in_owner = true
 position = Vector2(23, 30)
 target_position = Vector2(0, 25)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(27, 47)
-rotation = 4.71239
-shape = SubResource("SeparationRayShape2D_bkrt7")

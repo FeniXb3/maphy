@@ -5,7 +5,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xus6b"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uut0l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51btf"]
 size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8usuo"]
@@ -28,7 +28,7 @@ uv = PackedVector2Array(0, 64, 0, 0, 64, 0, 64, 64)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_uut0l")
+shape = SubResource("RectangleShape2D_51btf")
 
 [node name="Node" type="Node2D" parent="."]
 visible = false
