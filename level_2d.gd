@@ -66,5 +66,6 @@ func update_camera() -> void:
 
 func handle_body_killed(body: RigidBody2D) -> void:
 	body.freeze = true
+	body.get_parent()
 	body.position = spawn_point.position
 	body.freeze = false

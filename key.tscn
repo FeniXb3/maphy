@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://m5aosvvxd44h"]
+
+[ext_resource type="Script" path="res://key.gd" id="1_2otq0"]
+[ext_resource type="Texture2D" uid="uid://behb80iple6ss" path="res://kenney_simplified-platformer-pack/PNG/Items/platformPack_item013.png" id="2_i056x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksvgl"]
+size = Vector2(44, 32)
+
+[node name="Key" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_2otq0")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_i056x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ksvgl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = direction * SPEED
 	
 	visuals.flip_h = last_direction < 0
+	#scale.x = -1 if (last_direction < 0) else 1
 		
 	#if linear_velocity.y < 0 and not is_touching_ground:
 		#animation_player.play("jump")

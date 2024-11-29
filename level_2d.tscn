@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=17 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="Script" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="7_c4bdb"]
 [ext_resource type="PackedScene" uid="uid://livk8ysuwju3" path="res://collectable_item.tscn" id="9_vkmia"]
 [ext_resource type="PackedScene" uid="uid://db7s5g55fitn7" path="res://player_joiner.tscn" id="10_5waku"]
+[ext_resource type="PackedScene" uid="uid://chrsthm1bq0h2" path="res://door.tscn" id="12_k4gko"]
+[ext_resource type="PackedScene" uid="uid://m5aosvvxd44h" path="res://key.tscn" id="13_vdub1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l6jl3"]
 
@@ -106,7 +108,6 @@ visual_scale = Vector2(4, 1)
 
 [node name="PushableItem" parent="Items" instance=ExtResource("4_c3yco")]
 position = Vector2(1012, 856)
-mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_l6jl3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -186,3 +187,9 @@ position = Vector2(360, 995)
 
 [node name="CollectableItem2" parent="Collectibles" instance=ExtResource("9_vkmia")]
 position = Vector2(2553, 995)
+
+[node name="Door" parent="." instance=ExtResource("12_k4gko")]
+position = Vector2(960, 1216)
+
+[node name="Key" parent="." instance=ExtResource("13_vdub1")]
+position = Vector2(2500, 1048)
