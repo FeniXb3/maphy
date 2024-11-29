@@ -7,6 +7,10 @@ extends RigidBody2D
 @onready var right_ray_cast_2d: RayCast2D = %RightRayCast2D
 
 @export var player_prefix: String
+@export var color: Color = Color.WHITE:
+	set(value):
+		color = value
+		modulate = color
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 

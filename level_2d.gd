@@ -1,11 +1,18 @@
+class_name RigidPlayerPlatformer2D
 extends Node2D
+
 @onready var score_label: Label = %ScoreLabel
 @onready var camera_2d: Camera2D = %Camera2D
-@export var players: Array[RigidBody2D]
 @onready var background: Node2D = $Background
 
 var points: int = 0
 
+@export var players: Array[RigidBody2D]
+@export var player_scene: PackedScene
+@export var maximum_players: int = 6
+@export var colors: Array[Color]
+@export var actions: Array[String] = ["move_left", "move_right", "jump"]
+@export var player_numbers_taken: Array[int] = []
 @export var minv: Vector2# = players[0].position
 @export var maxv: Vector2# = players[0].position
 
@@ -14,9 +21,36 @@ var points: int = 0
 func _ready() -> void:
 	SignalBus.add_score.connect(add_point)
 
+func _input(event: InputEvent) -> void:
+	for i in range(1, maximum_players+1):
+		if i in player_numbers_taken:
+			continue
+			
+		var prefix = "p%d_" % i
+		for a in actions:
+			var prefixed_action = "%s%s" % [prefix, a]
+			if event.is_action(prefixed_action):
+				var player = player_scene.instantiate() as RigidBody2D
+				player.player_prefix = prefix
+				player.color = colors[i-1]
+				add_child(player)
+				player_numbers_taken.append(i)
+				players.append(player)
+				update_camera()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if players.is_empty():
+		return
+		
+	set_players_edge_positions()
+	update_camera()
+
+func add_point() -> void:
+	points += 1
+	score_label.text = "%d" % points
+
+func set_players_edge_positions() -> void:
 	minv = players[0].position
 	maxv = players[0].position
 	
@@ -32,17 +66,11 @@ func _process(delta: float) -> void:
 			minv.y = p.position.y
 		if p.position.y > maxv.y:
 			maxv.y = p.position.y
-	
-	var positions_summed: Vector2 = players.reduce(func(accum, player:RigidBody2D): return accum + player.position if player != null else accum, Vector2())
-	var positions_subtracted: Vector2 =  minv - maxv
-	var camera_position = (minv+maxv)/2
-	camera_2d.position = camera_position
 
-	var zoom:float = positions_subtracted.length()/1000
-	zoom = clampf(zoom, 1, 3)
+func update_camera() -> void:
+	var positions_subtracted: Vector2 =  minv - maxv
+	camera_2d.position = (minv+maxv)/2
+
+	var zoom:float = clampf(positions_subtracted.length()/1000, 1, 3)
 	camera_2d.zoom = Vector2(1/zoom, 1/zoom)
 	background.zoom = camera_2d.zoom.x * 3
-
-func add_point():
-	points += 1
-	score_label.text = "%d" % points

@@ -24,9 +24,10 @@ height = 1024
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
-[node name="Level2D" type="Node2D" node_paths=PackedStringArray("players")]
+[node name="Level2D" type="Node2D"]
 script = ExtResource("1_7gmnr")
-players = [NodePath("RigidPlayerPlatformer2D"), NodePath("RigidPlayerPlatformer2D2"), NodePath("RigidPlayerPlatformer2D3")]
+player_scene = ExtResource("3_jt5jw")
+colors = Array[Color]([Color(0.785811, 0.602346, 0.803227, 1), Color(0.676505, 0.0564797, 0.0564797, 1), Color(0.533988, 0.690082, 0.396476, 1), Color(0.243477, 0.296076, 0.590515, 1), Color(0.776072, 0.676103, 0.217908, 1), Color(0.492683, 0.857536, 0.669895, 1)])
 
 [node name="Background" parent="." instance=ExtResource("5_fa20c")]
 
@@ -128,24 +129,6 @@ theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
 
-[node name="RigidPlayerPlatformer2D" parent="." instance=ExtResource("3_jt5jw")]
-modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(1109, 992)
-collision_layer = 3
-player_prefix = "p1_"
-
-[node name="RigidPlayerPlatformer2D2" parent="." instance=ExtResource("3_jt5jw")]
-modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(1109, 992)
-collision_layer = 3
-player_prefix = "p2_"
-
-[node name="RigidPlayerPlatformer2D3" parent="." instance=ExtResource("3_jt5jw")]
-modulate = Color(0.627451, 1, 1, 1)
-position = Vector2(1109, 992)
-collision_layer = 3
-player_prefix = "p3_"
-
 [node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
 position = Vector2(1542, 789)
 physics_material_override = null
@@ -184,3 +167,5 @@ drag_left_margin = 0.0
 drag_right_margin = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="Players" type="Node2D" parent="."]

@@ -56,6 +56,7 @@ length = 22.0
 
 [node name="RigidPlayerPlatformer2D" type="RigidBody2D"]
 z_index = 2
+collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_bhsmj")
 lock_rotation = true
 script = ExtResource("1_jwyup")
