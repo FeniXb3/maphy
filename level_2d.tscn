@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=15 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="Script" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dp44ec8tytbtg" path="res://kenney_simplified-platformer-pack/PNG/Items/platformPack_item002.png" id="6_m5yt4"]
 [ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="7_c4bdb"]
 [ext_resource type="PackedScene" uid="uid://livk8ysuwju3" path="res://collectable_item.tscn" id="9_vkmia"]
+[ext_resource type="PackedScene" uid="uid://db7s5g55fitn7" path="res://player_joiner.tscn" id="10_5waku"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l6jl3"]
 
@@ -24,10 +25,16 @@ height = 1024
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
-[node name="Level2D" type="Node2D"]
+[node name="Level2D" type="Node2D" node_paths=PackedStringArray("player_joiner", "spawn_point")]
 script = ExtResource("1_7gmnr")
+player_joiner = NodePath("PlayerJoiner")
+spawn_point = NodePath("SpawnPoint")
+
+[node name="PlayerJoiner" parent="." node_paths=PackedStringArray("players_parent", "spawn_point") instance=ExtResource("10_5waku")]
 player_scene = ExtResource("3_jt5jw")
-colors = Array[Color]([Color(0.785811, 0.602346, 0.803227, 1), Color(0.676505, 0.0564797, 0.0564797, 1), Color(0.533988, 0.690082, 0.396476, 1), Color(0.243477, 0.296076, 0.590515, 1), Color(0.776072, 0.676103, 0.217908, 1), Color(0.492683, 0.857536, 0.669895, 1)])
+colors = Array[Color]([Color(1, 1, 1, 1), Color(0.990325, 0.605224, 1, 1), Color(0.714833, 1, 0.849568, 1), Color(1, 0.980031, 0.188712, 1), Color(0, 1, 0.972086, 1), Color(0.993309, 0.744121, 0.44875, 1)])
+players_parent = NodePath("..")
+spawn_point = NodePath("../SpawnPoint")
 
 [node name="Background" parent="." instance=ExtResource("5_fa20c")]
 
@@ -152,9 +159,6 @@ offset_bottom = 64.0
 texture = SubResource("GradientTexture2D_gctcs")
 metadata/_edit_use_anchors_ = true
 
-[node name="CollectableItem" parent="." instance=ExtResource("9_vkmia")]
-position = Vector2(360, 995)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1542, 785)
@@ -174,3 +178,11 @@ editor_draw_drag_margin = true
 [node name="SpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1182, 1083)
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="CollectableItem" parent="Collectibles" instance=ExtResource("9_vkmia")]
+position = Vector2(360, 995)
+
+[node name="CollectableItem2" parent="Collectibles" instance=ExtResource("9_vkmia")]
+position = Vector2(2553, 995)

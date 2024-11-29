@@ -4,45 +4,29 @@ extends Node2D
 @onready var score_label: Label = %ScoreLabel
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var background: Node2D = $Background
-@onready var spawn_point: Marker2D = %SpawnPoint
 
-
-var points: int = 0
+@export var player_joiner: PlayerJoiner
+@export var spawn_point: Marker2D
 
 @export var players: Array[RigidBody2D]
-@export var player_scene: PackedScene
-@export var maximum_players: int = 6
-@export var colors: Array[Color]
-@export var actions: Array[String] = ["move_left", "move_right", "jump"]
-@export var player_numbers_taken: Array[int] = []
+
+var points: int = 0
 @export var minv: Vector2
 @export var maxv: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.add_score.connect(add_point)
+	SignalBus.body_killed.connect(handle_body_killed)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene();
+		
+	var player = player_joiner.try_joining(event)
+	if player:
+		players.append(player)
 	
-	for i in range(1, maximum_players+1):
-		if i in player_numbers_taken:
-			continue
-			
-		var prefix = "p%d_" % i
-		for a in actions:
-			var prefixed_action = "%s%s" % [prefix, a]
-			if event.is_action(prefixed_action):
-				var player = player_scene.instantiate() as RigidBody2D
-				player.player_prefix = prefix
-				player.color = colors[i-1]
-				add_child(player)
-				player.position = spawn_point.position
-				player_numbers_taken.append(i)
-				players.append(player)
-				update_camera()
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if players.is_empty():
@@ -79,3 +63,8 @@ func update_camera() -> void:
 	var zoom:float = clampf(positions_subtracted.length()/1000, 1, 3)
 	camera_2d.zoom = Vector2(1/zoom, 1/zoom)
 	background.zoom = camera_2d.zoom.x * 3
+
+func handle_body_killed(body: RigidBody2D) -> void:
+	body.freeze = true
+	body.position = spawn_point.position
+	body.freeze = false

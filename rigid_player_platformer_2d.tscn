@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://86nioqfghter"]
+[gd_scene load_steps=13 format=3 uid="uid://86nioqfghter"]
 
 [ext_resource type="Script" path="res://rigid_player_platformer_2d.gd" id="1_jwyup"]
 [ext_resource type="Texture2D" uid="uid://b8hoyi14314g" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_idle.png" id="1_wad00"]
 [ext_resource type="Texture2D" uid="uid://bwwp1gs2gqjm3" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_walk1.png" id="3_iah70"]
 [ext_resource type="Texture2D" uid="uid://xrc1y6hkron7" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_walk2.png" id="4_oeoia"]
+[ext_resource type="Texture2D" uid="uid://c4evcxbgf2455" path="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_jump.png" id="5_2idke"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bhsmj"]
 
@@ -25,9 +26,45 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("1_wad00")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bhb00"]
 resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_wad00")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1wq7o"]
 resource_name = "walk"
@@ -44,10 +81,38 @@ tracks/0/keys = {
 "values": [ExtResource("3_iah70"), ExtResource("4_oeoia")]
 }
 
+[sub_resource type="Animation" id="Animation_6ubh2"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_2idke")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1.2), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1a7ed"]
 _data = {
 "RESET": SubResource("Animation_krwp3"),
 "idle": SubResource("Animation_bhb00"),
+"jump": SubResource("Animation_6ubh2"),
 "walk": SubResource("Animation_1wq7o")
 }
 

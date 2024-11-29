@@ -21,10 +21,12 @@ func _physics_process(delta: float) -> void:
 	previous_linear_velocity = linear_velocity
 	# Handle jump.
 	
+	var jumped = false
 	var is_touching_ground: bool = left_ray_cast_2d.is_colliding() or center_ray_cast_2d.is_colliding() or right_ray_cast_2d.is_colliding()
 	
 	if Input.is_action_just_pressed("%sjump" % player_prefix) and is_touching_ground:
 		linear_velocity.y = JUMP_VELOCITY
+		jumped = true
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("%smove_left" % player_prefix, "%smove_right" % player_prefix)
@@ -35,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	
 	visuals.flip_h = last_direction < 0
 		
-		
+	#if linear_velocity.y < 0 and not is_touching_ground:
+		#animation_player.play("jump")
 	if is_zero_approx(linear_velocity.x):
 		animation_player.play("idle")
 	else:
