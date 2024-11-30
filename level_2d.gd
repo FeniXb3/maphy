@@ -15,6 +15,7 @@ extends Node2D
 var points: int = 0
 @export var minv: Vector2
 @export var maxv: Vector2
+var joining_allowed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,9 +26,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene();
 		
-	var player = player_joiner.try_joining(event)
-	if player:
-		players.append(player)
+	if event.is_action_pressed("joining_switch"):
+		joining_allowed = not joining_allowed
+		
+	if joining_allowed:
+		var player = player_joiner.try_joining(event)
+		if player:
+			players.append(player)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
