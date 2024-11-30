@@ -86,6 +86,11 @@ position = Vector2(363, 1140)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
+[node name="Platform2D5" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
+position = Vector2(-141, 1478)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
 [node name="SecondSegment" type="Node2D" parent="Platforms"]
 position = Vector2(64, 0)
 
@@ -130,6 +135,14 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "0"
+horizontal_alignment = 1
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Wygrana!"
 horizontal_alignment = 1
 
 [node name="PhysicsText" parent="." instance=ExtResource("4_6moah")]
@@ -182,6 +195,9 @@ position = Vector2(360, 995)
 
 [node name="CollectableItem2" parent="Collectibles" instance=ExtResource("9_vkmia")]
 position = Vector2(2553, 995)
+
+[node name="CollectableItem3" parent="Collectibles" instance=ExtResource("9_vkmia")]
+position = Vector2(2086, 1398)
 
 [node name="Door" parent="." node_paths=PackedStringArray("connected_plaform") instance=ExtResource("12_k4gko")]
 position = Vector2(960, 1216)

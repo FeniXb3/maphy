@@ -4,6 +4,8 @@ extends Node2D
 @onready var score_label: Label = %ScoreLabel
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var background: Node2D = $Background
+@onready var win_label: Label = %WinLabel
+
 
 @export  var moving_platform: AnimatableBody2D
 
@@ -16,6 +18,7 @@ var points: int = 0
 @export var minv: Vector2
 @export var maxv: Vector2
 var joining_allowed: bool = true
+@export var expected_points: int = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,6 +49,9 @@ func _process(delta: float) -> void:
 func add_point() -> void:
 	points += 1
 	score_label.text = "%d" % points
+	
+	if points >= expected_points:
+		win_label.show()
 
 func set_players_edge_positions() -> void:
 	minv = players[0].position
