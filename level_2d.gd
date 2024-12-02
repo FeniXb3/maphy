@@ -22,6 +22,11 @@ var joining_allowed: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var space = get_world_2d().space
+	PhysicsServer2D.space_set_param(
+		space, PhysicsServer2D.SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION, 0.0
+	)
+
 	SignalBus.add_score.connect(add_point)
 	SignalBus.body_killed.connect(handle_body_killed)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
