@@ -92,10 +92,10 @@ func set_players_edge_positions() -> void:
 
 func update_camera() -> void:
 	var positions_subtracted: Vector2 =  minv - maxv
-	camera_2d.position = (minv+maxv)/2
+	camera_2d.position = lerp(camera_2d.position, (minv+maxv)/2, 0.1)
 
-	var zoom:float = clampf(positions_subtracted.length()/1000, 1, 3)
-	camera_2d.zoom = Vector2(1/zoom, 1/zoom)
+	var zoom:float = clampf(positions_subtracted.length()/500, 1, 3)
+	camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1/zoom, 1/zoom), 0.1)
 	background.zoom = camera_2d.zoom.x * 3
 
 func handle_body_killed(body: RigidBody2D) -> void:
