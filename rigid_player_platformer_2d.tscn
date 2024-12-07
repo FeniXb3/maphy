@@ -117,6 +117,7 @@ _data = {
 }
 
 [node name="RigidPlayerPlatformer2D" type="RigidBody2D"]
+process_mode = 1
 z_index = 2
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_bhsmj")
