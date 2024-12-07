@@ -123,7 +123,7 @@ physics_material_override = SubResource("PhysicsMaterial_bhsmj")
 lock_rotation = true
 script = ExtResource("1_jwyup")
 SPEED = 350.0
-JUMP_VELOCITY = -550.0
+JUMP_VELOCITY = -560.0
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true

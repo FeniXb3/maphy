@@ -29,7 +29,6 @@ uv = PackedVector2Array(0, 64, 0, 0, 64, 0, 64, 64)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_51btf")
 
 [node name="Node" type="Node2D" parent="."]
