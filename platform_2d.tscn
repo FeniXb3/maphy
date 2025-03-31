@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://k7i7h1pws5ba"]
 
 [ext_resource type="Texture2D" uid="uid://bbmj67m3raf5f" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile001.png" id="1_4x161"]
-[ext_resource type="Script" path="res://platform_2d.gd" id="1_t8n7d"]
+[ext_resource type="Script" uid="uid://tf8kfu3tdwgq" path="res://platform_2d.gd" id="1_t8n7d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xus6b"]
 
@@ -15,14 +15,17 @@ size = Vector2(56, 64)
 radius = 4.0
 
 [node name="Platform2D" type="StaticBody2D"]
+scale = Vector2(2, 1)
 physics_material_override = SubResource("PhysicsMaterial_xus6b")
 script = ExtResource("1_t8n7d")
+visual_scale = Vector2(2, 1)
 texture = ExtResource("1_4x161")
 
 [node name="Visuals" type="Polygon2D" parent="."]
 unique_name_in_owner = true
 texture_repeat = 2
 texture = ExtResource("1_4x161")
+texture_scale = Vector2(2, 1)
 polygon = PackedVector2Array(-32, 32, -32, -32, 32, -32, 32, 32)
 uv = PackedVector2Array(0, 64, 0, 0, 64, 0, 64, 64)
 polygons = [PackedInt32Array(0, 1, 2, 3)]

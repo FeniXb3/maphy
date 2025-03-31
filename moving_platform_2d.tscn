@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://drcrxd78ldl0w"]
 
-[ext_resource type="Script" path="res://platform_2d.gd" id="1_7i5w8"]
+[ext_resource type="Script" uid="uid://tf8kfu3tdwgq" path="res://platform_2d.gd" id="1_7i5w8"]
 [ext_resource type="Texture2D" uid="uid://byafiqq27fr7d" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile015.png" id="2_tfe73"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xus6b"]

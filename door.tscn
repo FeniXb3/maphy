@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://chrsthm1bq0h2"]
 
-[ext_resource type="Script" path="res://door.gd" id="1_1kpk0"]
+[ext_resource type="Script" uid="uid://dngi4vhtl78oa" path="res://door.gd" id="1_1kpk0"]
 [ext_resource type="Texture2D" uid="uid://c07g82lm7edwx" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile058.png" id="2_xxj72"]
 [ext_resource type="Texture2D" uid="uid://bhpiq07nx582d" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile057.png" id="3_1vw67"]
 [ext_resource type="Texture2D" uid="uid://bgvxti30esdmo" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile053.png" id="4_nd7aj"]

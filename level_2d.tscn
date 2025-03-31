@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://220yfem0cjvb"]
 
-[ext_resource type="Script" path="res://level_2d.gd" id="1_7gmnr"]
+[ext_resource type="Script" uid="uid://dm5wg8h3n4f5t" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
 [ext_resource type="PackedScene" uid="uid://86nioqfghter" path="res://rigid_player_platformer_2d.tscn" id="3_jt5jw"]
 [ext_resource type="PackedScene" uid="uid://bongqq32sufnv" path="res://physics_text.tscn" id="4_6moah"]
@@ -66,8 +66,6 @@ position = Vector2(334, 878)
 
 [node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(363, 1148)
-scale = Vector2(4, 1)
-visual_scale = Vector2(4, 1)
 
 [node name="FirtSegment2" type="Node2D" parent="Platforms"]
 position = Vector2(2225, 4)
