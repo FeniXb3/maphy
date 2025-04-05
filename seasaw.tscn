@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6ufw0tyys3fm"]
+
+[ext_resource type="Texture2D" uid="uid://d0oblojyq2ep3" path="res://kenney_jumper-pack/PNG/HUD/coin_silver.png" id="1_i5hn8"]
+[ext_resource type="Texture2D" uid="uid://bgtv728xxx02c" path="res://kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile016.png" id="2_kk7ai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jmfh"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jmfh"]
+size = Vector2(320, 32)
+
+[node name="Seasaw" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Base" type="StaticBody2D" parent="."]
+position = Vector2(0, -20)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Base"]
+texture = ExtResource("1_i5hn8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base"]
+shape = SubResource("CircleShape2D_3jmfh")
+
+[node name="Plank" type="RigidBody2D" parent="."]
+position = Vector2(0, -50)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Polygon2D" parent="Plank"]
+texture_repeat = 2
+scale = Vector2(5, 0.5)
+texture = ExtResource("2_kk7ai")
+texture_scale = Vector2(5, 0.5)
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+uv = PackedVector2Array(0, 0, 0, 64, 64, 64, 64, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plank"]
+shape = SubResource("RectangleShape2D_3jmfh")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -40)
+node_a = NodePath("../Base")
+node_b = NodePath("../Plank")

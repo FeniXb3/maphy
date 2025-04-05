@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=18 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="Script" uid="uid://dm5wg8h3n4f5t" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://db7s5g55fitn7" path="res://player_joiner.tscn" id="10_5waku"]
 [ext_resource type="PackedScene" uid="uid://chrsthm1bq0h2" path="res://door.tscn" id="12_k4gko"]
 [ext_resource type="PackedScene" uid="uid://m5aosvvxd44h" path="res://key.tscn" id="13_vdub1"]
+[ext_resource type="PackedScene" uid="uid://c6ufw0tyys3fm" path="res://seasaw.tscn" id="14_2beu6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l6jl3"]
 
@@ -204,3 +205,6 @@ connected_plaform = NodePath("../Platforms/SecondSegment/MovingPlatform2D")
 
 [node name="Key" parent="." instance=ExtResource("13_vdub1")]
 position = Vector2(2500, 1048)
+
+[node name="Seasaw" parent="." instance=ExtResource("14_2beu6")]
+position = Vector2(3483, 1248)
