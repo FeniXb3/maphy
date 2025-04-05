@@ -64,14 +64,12 @@ visual_scale = Vector2(4, 1)
 
 [node name="Platform2D5" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(334, 878)
-scale = Vector2(2, 1)
 
 [node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(363, 1148)
-scale = Vector2(2, 1)
 
 [node name="FirtSegment2" type="Node2D" parent="Platforms"]
-position = Vector2(2225, 4)
+position = Vector2(2225, 0)
 
 [node name="Platform2D2" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
 position = Vector2(921, 947)
@@ -84,7 +82,7 @@ scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D4" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
-position = Vector2(363, 1150)
+position = Vector2(363, 1148)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 

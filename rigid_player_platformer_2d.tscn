@@ -138,7 +138,7 @@ shape = SubResource("RectangleShape2D_s8h5q")
 unique_name_in_owner = true
 root_node = NodePath("../Visuals")
 libraries = {
-"": SubResource("AnimationLibrary_1a7ed")
+&"": SubResource("AnimationLibrary_1a7ed")
 }
 
 [node name="LeftRayCast2D" type="RayCast2D" parent="."]
