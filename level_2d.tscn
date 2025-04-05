@@ -63,10 +63,15 @@ scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D5" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
-position = Vector2(334, 878)
+position = Vector2(270, 902)
+scale = Vector2(3, 1)
+visual_scale = Vector2(3, 1)
 
 [node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
 position = Vector2(363, 1148)
+
+[node name="Platform2D6" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
+position = Vector2(-11, 1216)
 
 [node name="FirtSegment2" type="Node2D" parent="Platforms"]
 position = Vector2(2225, 0)
@@ -108,6 +113,12 @@ visual_scale = Vector2(4, 1)
 
 [node name="PushableItem" parent="Items" instance=ExtResource("4_c3yco")]
 position = Vector2(1012, 856)
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
+[node name="PushableItem2" parent="Items" instance=ExtResource("4_c3yco")]
+modulate = Color(0.736979, 0.186164, 0.53903, 1)
+position = Vector2(205, 829)
+mass = 25.0
 physics_material_override = SubResource("PhysicsMaterial_l6jl3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -208,3 +219,6 @@ position = Vector2(2500, 1048)
 
 [node name="Seasaw" parent="." instance=ExtResource("14_2beu6")]
 position = Vector2(3483, 1248)
+
+[node name="Seasaw2" parent="." instance=ExtResource("14_2beu6")]
+position = Vector2(-10, 1184)
