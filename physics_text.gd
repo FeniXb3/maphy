@@ -58,7 +58,7 @@ func update_shape_size():
 	#rich_text_label.size = shape.size
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#var dir_x := 1 if randi_range(0, 1) else -1
 	#var dir_y := 1 if randi_range(0, 1) else -1
 #

@@ -61,7 +61,7 @@ func _input(event: InputEvent) -> void:
 			joining_allowed = false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if players.is_empty():
 		return
 		

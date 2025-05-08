@@ -14,7 +14,7 @@ func _on_area_entered(area: Area2D) -> void:
 	SignalBus.door_opened.emit(self)
 	button_visuals.show()
 
-func _on_button_body_entered(body: Node2D) -> void:
+func _on_button_body_entered(_body: Node2D) -> void:
 	if not button_visuals.visible or tween:
 		return
 	button_visuals.play("pressed")
