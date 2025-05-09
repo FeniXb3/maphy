@@ -10,8 +10,9 @@ extends RigidBody2D
 @export var player_prefix: String
 @export var color: Color = Color.WHITE:
 	set(value):
+		await ready
 		color = value
-		modulate = color
+		visuals.self_modulate = color
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 
