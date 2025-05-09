@@ -41,7 +41,7 @@ func try_joining(event: InputEvent) -> RigidBody2D:
 		
 		for a in actions:
 			var prefixed_action = "%s%s" % [p, a]
-			if event.is_action(prefixed_action):
+			if event.is_action(prefixed_action) and Input.is_action_pressed(prefixed_action):
 				var player = player_scene.instantiate() as RigidBody2D
 				player.player_prefix = p
 				if i < colors.size():
