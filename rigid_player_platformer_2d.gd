@@ -6,6 +6,7 @@ extends RigidBody2D
 @onready var center_ray_cast_2d: RayCast2D = %CenterRayCast2D
 @onready var right_ray_cast_2d: RayCast2D = %RightRayCast2D
 
+@export var connected_device: int
 @export var player_prefix: String
 @export var color: Color = Color.WHITE:
 	set(value):
@@ -16,6 +17,8 @@ extends RigidBody2D
 
 var previous_linear_velocity: Vector2 = Vector2()
 var last_direction: float = 0;
+
+
 
 func _physics_process(delta: float) -> void:
 	previous_linear_velocity = linear_velocity
