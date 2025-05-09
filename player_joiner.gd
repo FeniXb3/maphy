@@ -3,7 +3,7 @@ extends Node
 
 @export var player_scene: PackedScene
 @export var colors: Array[Color]
-@export var actions: Array[String] = ["move_left", "move_right", "jump"]
+@export var actions: Array[String] = ["move_left", "move_right", "jump", "disable"]
 @export var player_numbers_taken: Array[int] = []
 @export var player_prefixes_taken: Array[String] = []
 @export var prefixes: Array
@@ -16,10 +16,6 @@ extends Node
 func _ready() -> void:
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	
-	#for i in 4:
-		#add_player_input(i, joypad_movement_controls, "joy_left")
-		#add_player_input(i, right_split_joypad_movement_controls, "joy_right")
-		
 func add_player_input(i: int, movement_controls, infix: String):
 	var prefix = "p_{infix}_{id}_".format({"infix": infix, "id": i})
 	prefixes.append(prefix)
@@ -61,6 +57,32 @@ func try_joining(event: InputEvent) -> RigidBody2D:
 				return player
 	
 	return null
+	
+func try_disabling(event: InputEvent) -> bool:
+	for i in prefixes.size():
+		var p = prefixes[i]
+		if not p in player_prefixes_taken:
+			continue
+		
+		var a = "disable"
+		var prefixed_action = "%s%s" % [p, a]
+		if event.is_action(prefixed_action) and Input.is_action_pressed(prefixed_action):
+			var device = event.device
+			disable_player(p, device)
+			
+			return true
+			
+	return false
+
+func disable_player(prefix: String, device:int):
+	var device_players = device_player_map[device] as Array[RigidBody2D]
+	for player in device_players:
+		if player.player_prefix == prefix:
+			device_players.erase(player)
+			remove_player(player)
+	
+	if device_players.is_empty():
+		device_player_map.erase(device)
 
 func _on_joy_connection_changed(device: int,  connected: bool):
 	if connected:
@@ -72,7 +94,10 @@ func _on_joy_connection_changed(device: int,  connected: bool):
 func remove_players_of_device(device: int):
 	var device_players = device_player_map[device] as Array[RigidBody2D]
 	for player in device_players:
-		player_prefixes_taken.erase(player.player_prefix)
-		player.queue_free()
+		remove_player(player)
 		
 	device_player_map.erase(device)
+	
+func remove_player(player: RigidBody2D):
+	player_prefixes_taken.erase(player.player_prefix)
+	player.queue_free()

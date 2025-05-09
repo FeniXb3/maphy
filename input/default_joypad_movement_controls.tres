@@ -1,6 +1,11 @@
-[gd_resource type="Resource" script_class="MovementControls" load_steps=9 format=3 uid="uid://dge32oic11p5q"]
+[gd_resource type="Resource" script_class="MovementControls" load_steps=10 format=3 uid="uid://dge32oic11p5q"]
 
 [ext_resource type="Script" uid="uid://cv4kvlk2gevy4" path="res://input/movement_controls.gd" id="1_h35fc"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_p5ovs"]
+device = -1
+button_index = 2
+pressed = true
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_h35fc"]
 device = -1
@@ -39,4 +44,5 @@ script = ExtResource("1_h35fc")
 move_left = Array[InputEvent]([SubResource("InputEventJoypadMotion_mkduu"), SubResource("InputEventJoypadButton_4d1cs")])
 move_right = Array[InputEvent]([SubResource("InputEventJoypadMotion_0bpyx"), SubResource("InputEventJoypadButton_22s6n")])
 jump = Array[InputEvent]([SubResource("InputEventJoypadButton_h35fc"), SubResource("InputEventJoypadButton_14g71"), SubResource("InputEventJoypadMotion_p5ovs")])
+disable = Array[InputEvent]([SubResource("InputEventJoypadButton_p5ovs")])
 metadata/_custom_type_script = "uid://cv4kvlk2gevy4"

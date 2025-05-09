@@ -18,6 +18,8 @@ var points: int = 0
 @export var minv: Vector2
 @export var maxv: Vector2
 var joining_allowed: bool = true
+@export var disable_joining_automatically: bool = false
+var disabling_allowed: bool = true
 @export var expected_points: int = 3
 
 # Called when the node enters the scene tree for the first time.
@@ -53,13 +55,21 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("joining_switch"):
 		joining_allowed = not joining_allowed
+	if event.is_action_pressed("disabling_switch"):
+		disabling_allowed = not disabling_allowed
 		
 	if joining_allowed:
 		var player = player_joiner.try_joining(event)
 		if player:
 			players.append(player)
-			joining_allowed = false
+			if disable_joining_automatically:
+				joining_allowed = false
+			
 	
+	if disabling_allowed:
+		if player_joiner.try_disabling(event):
+			players = players.filter(func(p): return p != null)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if players.is_empty():
@@ -76,6 +86,10 @@ func add_point() -> void:
 		win_label.show()
 
 func set_players_edge_positions() -> void:
+	if players[0] == null:
+		players.remove_at(0)
+		return
+		
 	minv = players[0].position
 	maxv = players[0].position
 	
