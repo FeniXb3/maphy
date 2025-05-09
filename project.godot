@@ -24,6 +24,10 @@ SignalBus="*res://signal_bus.gd"
 window/size/always_on_top=true
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+
 [gui]
 
 theme/custom="res://new_theme.tres"
