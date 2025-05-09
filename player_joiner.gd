@@ -9,9 +9,29 @@ extends Node
 @export var prefixes: Array
 @export var players_parent: Node2D
 @export var spawn_point: Marker2D
+@export var joypad_movement_controls: MovementControls
 
 func _ready() -> void:
-	prefixes = InputMap.get_actions().filter(func (a: String): return a.ends_with("jump")).map(func(a: String): return a.replace("jump", ""))
+	for i in 4:
+		var prefix = "p_joy_{id}_".format({"id": i})
+		prefixes.append(prefix)
+		for a in actions:
+			var prefixed_action_name = "{prefix}{name}".format({"prefix": prefix, "name": a})
+			var input_events = joypad_movement_controls.get(a) as Array[InputEvent]
+			
+			if not InputMap.has_action(prefixed_action_name):
+				InputMap.add_action(prefixed_action_name)
+				
+			for event in input_events:
+				var specific_event = event.duplicate() as InputEvent
+				specific_event.device = i
+				if not InputMap.action_has_event(prefixed_action_name, specific_event):
+					InputMap.action_add_event(prefixed_action_name, specific_event)
+				
+				
+			print(InputMap.action_get_events(prefixed_action_name))
+				
+			print(prefixes)
 
 func try_joining(event: InputEvent) -> RigidBody2D:
 	for i in prefixes.size():
