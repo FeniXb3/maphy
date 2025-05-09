@@ -11,10 +11,12 @@ extends Node
 @export var spawn_point: Marker2D
 @export var joypad_movement_controls: MovementControls
 @export var right_split_joypad_movement_controls: MovementControls
+@export var wsad_movement_controls: MovementControls
 @export var device_player_map: Dictionary[int, Array]
 
 func _ready() -> void:
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	add_player_input(0, wsad_movement_controls, "wsad_keyboard")
 	
 func add_player_input(i: int, movement_controls, infix: String):
 	var prefix = "p_{infix}_{id}_".format({"infix": infix, "id": i})
@@ -94,9 +96,12 @@ func _on_joy_connection_changed(device: int,  connected: bool):
 func remove_players_of_device(device: int):
 	var device_players = device_player_map[device] as Array[RigidBody2D]
 	for player in device_players:
-		remove_player(player)
-		
-	device_player_map.erase(device)
+		if player.player_prefix.contains("joy"):
+			device_players.erase(player)
+			remove_player(player)
+	
+	if device_players.is_empty():
+		device_player_map.erase(device)
 	
 func remove_player(player: RigidBody2D):
 	player_prefixes_taken.erase(player.player_prefix)

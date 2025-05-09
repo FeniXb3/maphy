@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MovementControls" load_steps=6 format=3 uid="uid://cmqmfm6sjgwss"]
+
+[ext_resource type="Script" uid="uid://cv4kvlk2gevy4" path="res://input/movement_controls.gd" id="1_ox8uv"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ox8uv"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="InputEventKey" id="InputEventKey_eguo6"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_uxni3"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_w63jo"]
+device = -1
+keycode = 68
+unicode = 100
+
+[resource]
+script = ExtResource("1_ox8uv")
+device_type = 1
+move_left = Array[InputEvent]([SubResource("InputEventKey_uxni3")])
+move_right = Array[InputEvent]([SubResource("InputEventKey_w63jo")])
+jump = Array[InputEvent]([SubResource("InputEventKey_eguo6")])
+disable = Array[InputEvent]([SubResource("InputEventKey_ox8uv")])
+metadata/_custom_type_script = "uid://cv4kvlk2gevy4"

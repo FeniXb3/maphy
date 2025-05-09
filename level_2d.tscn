@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=21 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="Script" uid="uid://dm5wg8h3n4f5t" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://h4o7n73u1bbg" path="res://input/right_split_joypad_movement_controls.tres" id="5_b1qxx"]
 [ext_resource type="PackedScene" uid="uid://bnxh5txmnw1wo" path="res://background.tscn" id="5_fa20c"]
 [ext_resource type="PackedScene" uid="uid://drcrxd78ldl0w" path="res://moving_platform_2d.tscn" id="6_4w4wt"]
+[ext_resource type="Resource" uid="uid://cmqmfm6sjgwss" path="res://input/wsad_movement_controls.tres" id="6_lvwdu"]
 [ext_resource type="Texture2D" uid="uid://dp44ec8tytbtg" path="res://kenney_simplified-platformer-pack/PNG/Items/platformPack_item002.png" id="6_m5yt4"]
 [ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="7_c4bdb"]
 [ext_resource type="PackedScene" uid="uid://livk8ysuwju3" path="res://collectable_item.tscn" id="9_vkmia"]
@@ -44,6 +45,7 @@ players_parent = NodePath("..")
 spawn_point = NodePath("../SpawnPoint")
 joypad_movement_controls = ExtResource("4_xhro5")
 right_split_joypad_movement_controls = ExtResource("5_b1qxx")
+wsad_movement_controls = ExtResource("6_lvwdu")
 
 [node name="Background" parent="." instance=ExtResource("5_fa20c")]
 
