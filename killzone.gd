@@ -12,3 +12,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	pass
 	#SignalBus.body_killed.emit(bodies_queue.pop_front())
+
+
+func _on_area_entered(area: Area2D) -> void:
+	area.reset()

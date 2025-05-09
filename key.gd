@@ -1,6 +1,12 @@
 extends Area2D
 
 @export var is_picked_up: bool = false
+var start_position: Vector2
+var start_parent: Node2D
+
+func _ready() -> void:
+	start_position = position
+	start_parent = get_parent()
 
 func _on_body_entered(body: Node2D) -> void:
 	if get_parent() != body:
@@ -17,3 +23,7 @@ func pickup(body: Node2D) -> void:
 		#return
 		#
 	#position = Vector2(32, 0)
+
+func reset():
+	reparent(start_parent)
+	position = start_position
