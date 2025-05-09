@@ -95,11 +95,11 @@ func _on_joy_connection_changed(device: int,  connected: bool):
 		
 func remove_players_of_device(device: int):
 	var device_players = device_player_map[device] as Array[RigidBody2D]
-	for player in device_players:
-		if player.player_prefix.contains("joy"):
+	for player in device_players.duplicate():
+		if "joy" in player.player_prefix:
 			device_players.erase(player)
 			remove_player(player)
-	
+
 	if device_players.is_empty():
 		device_player_map.erase(device)
 	
