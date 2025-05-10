@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://86nioqfghter"]
+[gd_scene load_steps=14 format=3 uid="uid://86nioqfghter"]
 
 [ext_resource type="Script" uid="uid://pem48no5x32q" path="res://rigid_player_platformer_2d.gd" id="1_jwyup"]
 [ext_resource type="Texture2D" uid="uid://b8hoyi14314g" path="res://kenney_simplified-platformer-pack/PNG/Characters Greyscale/platformChar_idle.png" id="1_wad00"]
@@ -8,9 +8,12 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bhsmj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8h5q"]
-custom_solver_bias = 1.0
-size = Vector2(55, 66)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kxp8c"]
+radius = 25.69
+height = 66.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxp8c"]
+size = Vector2(50, 37)
 
 [sub_resource type="Animation" id="Animation_krwp3"]
 length = 0.001
@@ -131,8 +134,12 @@ unique_name_in_owner = true
 texture = ExtResource("1_wad00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15)
-shape = SubResource("RectangleShape2D_s8h5q")
+position = Vector2(0, 15.5)
+shape = SubResource("CapsuleShape2D_kxp8c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_kxp8c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
