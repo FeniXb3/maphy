@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4evcxbgf2455"
-path="res://.godot/imported/platformChar_jump.png-a8a33382a4f9f5af64e71bfa840e21a6.ctex"
+uid="uid://feng5a5f54rk"
+path="res://.godot/imported/platformChar_climb2.png-df9621d34c0cc25aad0acedb008527b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_jump.png"
-dest_files=["res://.godot/imported/platformChar_jump.png-a8a33382a4f9f5af64e71bfa840e21a6.ctex"]
+source_file="res://kenney_simplified-platformer-pack/PNG/Characters Fronts/platformChar_climb2.png"
+dest_files=["res://.godot/imported/platformChar_climb2.png-df9621d34c0cc25aad0acedb008527b7.ctex"]
 
 [params]
 

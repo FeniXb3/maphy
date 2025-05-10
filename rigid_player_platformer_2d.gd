@@ -1,6 +1,8 @@
 extends RigidBody2D
 
 @onready var visuals: Sprite2D = %Visuals
+@onready var front: Sprite2D = %Front
+
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var left_ray_cast_2d: RayCast2D = %LeftRayCast2D
 @onready var center_ray_cast_2d: RayCast2D = %CenterRayCast2D
@@ -41,6 +43,7 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = direction * SPEED
 	
 	visuals.flip_h = last_direction < 0
+	front.flip_h = visuals.flip_h
 	#scale.x = -1 if (last_direction < 0) else 1
 		
 	#if linear_velocity.y < 0 and not is_touching_ground:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0mbuylv5bs7s"
-path="res://.godot/imported/platformChar_duck.png-8c35999c9b8af2e009e07a14aabc85fe.ctex"
+uid="uid://c8cqcbwpbywps"
+path="res://.godot/imported/platformChar_walk2.png-3e35927845e970886fb5e9c83365a996.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_duck.png"
-dest_files=["res://.godot/imported/platformChar_duck.png-8c35999c9b8af2e009e07a14aabc85fe.ctex"]
+source_file="res://kenney_simplified-platformer-pack/PNG/Characters Fronts/platformChar_walk2.png"
+dest_files=["res://.godot/imported/platformChar_walk2.png-3e35927845e970886fb5e9c83365a996.ctex"]
 
 [params]
 

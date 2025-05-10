@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5pd4bxb373at"
-path="res://.godot/imported/platformChar_happy.png-108a95871c205812f10fc45d1e1c44e8.ctex"
+uid="uid://c45oemadimkq2"
+path="res://.godot/imported/platformChar_idle.png-734b0bb4ad2bae65e9d4cfc44ab145f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_simplified-platformer-pack/PNG/Characters/platformChar_happy.png"
-dest_files=["res://.godot/imported/platformChar_happy.png-108a95871c205812f10fc45d1e1c44e8.ctex"]
+source_file="res://kenney_simplified-platformer-pack/PNG/Characters Fronts/platformChar_idle.png"
+dest_files=["res://.godot/imported/platformChar_idle.png-734b0bb4ad2bae65e9d4cfc44ab145f1.ctex"]
 
 [params]
 
