@@ -12,11 +12,13 @@ extends Node
 @export var joypad_movement_controls: MovementControls
 @export var right_split_joypad_movement_controls: MovementControls
 @export var wsad_movement_controls: MovementControls
+@export var arrows_movement_controls: MovementControls
 @export var device_player_map: Dictionary[int, Array]
 
 func _ready() -> void:
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	add_player_input(0, wsad_movement_controls, "wsad_keyboard")
+	add_player_input(0, arrows_movement_controls, "arrows_keyboard")
 	
 func add_player_input(i: int, movement_controls, infix: String):
 	var prefix = "p_{infix}_{id}_".format({"infix": infix, "id": i})
