@@ -58,6 +58,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("disabling_switch"):
 		disabling_allowed = not disabling_allowed
 		
+	if get_tree().paused:
+		return
+		
 	if joining_allowed:
 		var player = player_joiner.try_joining(event)
 		if player:
