@@ -37,6 +37,7 @@ script = ExtResource("1_7gmnr")
 moving_platform = NodePath("Platforms/SecondSegment/MovingPlatform2D")
 player_joiner = NodePath("PlayerJoiner")
 spawn_point = NodePath("SpawnPoint")
+disable_joining_automatically = true
 
 [node name="PlayerJoiner" parent="." node_paths=PackedStringArray("players_parent", "spawn_point") instance=ExtResource("10_5waku")]
 player_scene = ExtResource("3_jt5jw")
