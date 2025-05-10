@@ -51,7 +51,8 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 	
 	if event.is_action_pressed("restart"):
-		get_tree().reload_current_scene();
+		get_tree().reload_current_scene()
+		return
 		
 	if event.is_action_pressed("joining_switch"):
 		joining_allowed = not joining_allowed
