@@ -15,6 +15,7 @@ extends RigidBody2D
 		visuals.self_modulate = color
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
+@export var allow_movement_in_air: bool = true
 
 var previous_linear_velocity: Vector2 = Vector2()
 var last_direction: float = 0;
@@ -34,7 +35,7 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("%smove_left" % player_prefix, "%smove_right" % player_prefix)
-	if direction:
+	if direction and allow_movement_in_air or (not allow_movement_in_air and is_touching_ground):
 		#set_axis_velocity(Vector2(direction * SPEED, linear_velocity.y))
 		last_direction = direction
 		linear_velocity.x = direction * SPEED
