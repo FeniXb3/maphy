@@ -101,7 +101,7 @@ scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D5" parent="Platforms/FirtSegment2" instance=ExtResource("2_0dtv0")]
-position = Vector2(-115, 1478)
+position = Vector2(77, 1478)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
@@ -231,11 +231,13 @@ position = Vector2(360, 995)
 position = Vector2(2553, 995)
 
 [node name="CollectableItem3" parent="Collectibles" instance=ExtResource("9_vkmia")]
-position = Vector2(2086, 1398)
+position = Vector2(2278, 1398)
 
 [node name="Door" parent="." node_paths=PackedStringArray("connected_plaform") instance=ExtResource("12_k4gko")]
 position = Vector2(960, 1216)
 connected_plaform = NodePath("../Platforms/SecondSegment/MovingPlatform2D")
+move_difference = 600.0
+activate_without_key = false
 
 [node name="Key" parent="." instance=ExtResource("13_vdub1")]
 position = Vector2(2500, 1048)
