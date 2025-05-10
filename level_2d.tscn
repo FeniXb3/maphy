@@ -122,6 +122,18 @@ visual_scale = Vector2(4, 1)
 position = Vector2(1012, 856)
 physics_material_override = SubResource("PhysicsMaterial_l6jl3")
 
+[node name="PushableItem3" parent="Items" instance=ExtResource("4_c3yco")]
+process_mode = 4
+visible = false
+position = Vector2(1101, 856)
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
+[node name="PushableItem4" parent="Items" instance=ExtResource("4_c3yco")]
+process_mode = 4
+visible = false
+position = Vector2(1179, 856)
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
 [node name="PushableItem2" parent="Items" instance=ExtResource("4_c3yco")]
 visible = false
 modulate = Color(0.736979, 0.186164, 0.53903, 1)
