@@ -40,7 +40,7 @@ spawn_point = NodePath("SpawnPoint")
 
 [node name="PlayerJoiner" parent="." node_paths=PackedStringArray("players_parent", "spawn_point") instance=ExtResource("10_5waku")]
 player_scene = ExtResource("3_jt5jw")
-colors = Array[Color]([Color(1, 1, 1, 1), Color(0.990325, 0.605224, 1, 1), Color(0.714833, 1, 0.849568, 1), Color(1, 0.980031, 0.188712, 1), Color(0, 1, 0.972086, 1), Color(0.993309, 0.744121, 0.44875, 1)])
+colors = Array[Color]([Color(0.958333, 0.291992, 0.291992, 1), Color(0.990325, 0.605224, 1, 1), Color(0.714833, 1, 0.849568, 1), Color(1, 0.980031, 0.188712, 1), Color(0, 1, 0.972086, 1), Color(0.993309, 0.744121, 0.44875, 1)])
 players_parent = NodePath("..")
 spawn_point = NodePath("../SpawnPoint")
 joypad_movement_controls = ExtResource("4_xhro5")
@@ -64,7 +64,7 @@ scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
 [node name="Platform2D3" parent="Platforms/FirtSegment" instance=ExtResource("2_0dtv0")]
-position = Vector2(640, 1041)
+position = Vector2(672, 1041)
 scale = Vector2(4, 1)
 visual_scale = Vector2(4, 1)
 
@@ -122,6 +122,7 @@ position = Vector2(1012, 856)
 physics_material_override = SubResource("PhysicsMaterial_l6jl3")
 
 [node name="PushableItem2" parent="Items" instance=ExtResource("4_c3yco")]
+visible = false
 modulate = Color(0.736979, 0.186164, 0.53903, 1)
 position = Vector2(205, 829)
 mass = 25.0
@@ -225,7 +226,11 @@ connected_plaform = NodePath("../Platforms/SecondSegment/MovingPlatform2D")
 position = Vector2(2500, 1048)
 
 [node name="Seasaw" parent="." instance=ExtResource("14_2beu6")]
+process_mode = 4
+visible = false
 position = Vector2(3483, 1248)
 
 [node name="Seasaw2" parent="." instance=ExtResource("14_2beu6")]
+process_mode = 4
+visible = false
 position = Vector2(-10, 1184)
