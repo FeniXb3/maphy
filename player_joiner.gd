@@ -16,6 +16,10 @@ extends Node
 @export var device_player_map: Dictionary[int, Array]
 
 func _ready() -> void:
+	for device in Input.get_connected_joypads():
+		add_player_input(device, joypad_movement_controls, "joy_left")
+		add_player_input(device, right_split_joypad_movement_controls, "joy_right")
+
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	add_player_input(0, wsad_movement_controls, "wsad_keyboard")
 	add_player_input(0, arrows_movement_controls, "arrows_keyboard")
