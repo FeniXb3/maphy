@@ -7,7 +7,8 @@ func _on_body_entered(body: Node2D) -> void:
 	#bodies_queue.append(body)
 	timer.start()
 	await timer.timeout
-	SignalBus.body_killed.emit(body)
+	if body != null:
+		SignalBus.body_killed.emit(body)
 
 func _on_timer_timeout() -> void:
 	pass
