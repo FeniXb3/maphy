@@ -115,5 +115,9 @@ func remove_players_of_device(device: int):
 		device_player_map.erase(device)
 	
 func remove_player(player: RigidBody2D):
+	for item in player.items:
+		item.reset()
+		
+	player.items.clear()
 	player_prefixes_taken.erase(player.player_prefix)
 	player.queue_free()

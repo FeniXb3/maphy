@@ -22,11 +22,13 @@ signal idled(player: RigidPlayerPlatformer2D)
 @export var JUMP_VELOCITY = -400.0
 @export var allow_movement_in_air: bool = true
 @export var timer: Timer
+@export var items: Array[Node2D]
 
 var previous_linear_velocity: Vector2 = Vector2()
-var last_direction: float = 0;
+var last_direction: float = 0
 
-
+func _ready() -> void:
+	items = []
 
 func _physics_process(delta: float) -> void:
 	previous_linear_velocity = linear_velocity

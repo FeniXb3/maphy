@@ -5,6 +5,11 @@ var bodies_queue: Array[RigidBody2D]
 
 func _on_body_entered(body: Node2D) -> void:
 	#bodies_queue.append(body)
+	for item in body.items:
+		item.reset()
+		
+	body.items.clear()
+	
 	timer.start()
 	await timer.timeout
 	if body != null:

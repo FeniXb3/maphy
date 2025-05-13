@@ -12,8 +12,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if get_parent() != body:
 		pickup.call_deferred(body)
 		
-func pickup(body: Node2D) -> void:
+func pickup(body: RigidPlayerPlatformer2D) -> void:
 	reparent(body)
+	body.items.append(self)
 	#position = Vector2()
 	var parent_size = body.visuals.get_rect().size
 	position = Vector2(parent_size.x*0.3, parent_size.y/4)
