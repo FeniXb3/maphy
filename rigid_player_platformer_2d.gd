@@ -1,4 +1,7 @@
+class_name RigidPlayerPlatformer2D
 extends RigidBody2D
+
+signal idled(player: RigidPlayerPlatformer2D)
 
 @onready var visuals: Sprite2D = %Visuals
 @onready var front: Sprite2D = %Front
@@ -18,6 +21,7 @@ extends RigidBody2D
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var allow_movement_in_air: bool = true
+@export var timer: Timer
 
 var previous_linear_velocity: Vector2 = Vector2()
 var last_direction: float = 0;
@@ -27,16 +31,20 @@ var last_direction: float = 0;
 func _physics_process(delta: float) -> void:
 	previous_linear_velocity = linear_velocity
 	# Handle jump.
+	var is_jump_just_pressed := Input.is_action_just_pressed("%sjump" % player_prefix)
+	var direction := Input.get_axis("%smove_left" % player_prefix, "%smove_right" % player_prefix)
+	
+	if is_jump_just_pressed or direction:
+		timer.start()
 	
 	#var jumped = false
 	var is_touching_ground: bool = left_ray_cast_2d.is_colliding() or center_ray_cast_2d.is_colliding() or right_ray_cast_2d.is_colliding()
 	
-	if Input.is_action_just_pressed("%sjump" % player_prefix) and is_touching_ground:
+	if is_jump_just_pressed and is_touching_ground:
 		linear_velocity.y = JUMP_VELOCITY
 		#jumped = true
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("%smove_left" % player_prefix, "%smove_right" % player_prefix)
 	if direction and allow_movement_in_air or (not allow_movement_in_air and is_touching_ground):
 		#set_axis_velocity(Vector2(direction * SPEED, linear_velocity.y))
 		last_direction = direction
@@ -53,3 +61,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_player.play("walk", -1, abs(linear_velocity.x*delta))
 	
+
+
+func _on_timer_timeout() -> void:
+	idled.emit(self)

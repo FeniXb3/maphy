@@ -158,7 +158,7 @@ _data = {
 &"walk": SubResource("Animation_1wq7o")
 }
 
-[node name="RigidPlayerPlatformer2D" type="RigidBody2D"]
+[node name="RigidPlayerPlatformer2D" type="RigidBody2D" node_paths=PackedStringArray("timer")]
 process_mode = 1
 z_index = 2
 collision_layer = 3
@@ -167,6 +167,7 @@ lock_rotation = true
 script = ExtResource("1_jwyup")
 SPEED = 350.0
 JUMP_VELOCITY = -560.0
+timer = NodePath("Timer")
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -205,3 +206,9 @@ target_position = Vector2(0, 25)
 unique_name_in_owner = true
 position = Vector2(23, 30)
 target_position = Vector2(0, 25)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,3 @@
-class_name RigidPlayerPlatformer2D
 extends Node2D
 
 @onready var score_label: Label = %ScoreLabel

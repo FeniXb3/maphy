@@ -15,6 +15,7 @@ extends Node
 @export var arrows_movement_controls: MovementControls
 @export var device_player_map: Dictionary[int, Array]
 
+
 func _ready() -> void:
 	for device in Input.get_connected_joypads():
 		add_player_input(device, joypad_movement_controls, "joy_left")
@@ -23,7 +24,7 @@ func _ready() -> void:
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	add_player_input(0, wsad_movement_controls, "wsad_keyboard")
 	add_player_input(0, arrows_movement_controls, "arrows_keyboard")
-	
+
 func add_player_input(i: int, movement_controls, infix: String):
 	var prefix = "p_{infix}_{id}_".format({"infix": infix, "id": i})
 	prefixes.append(prefix)
@@ -49,11 +50,12 @@ func try_joining(event: InputEvent) -> RigidBody2D:
 		for a in actions:
 			var prefixed_action = "%s%s" % [p, a]
 			if event.is_action(prefixed_action) and Input.is_action_pressed(prefixed_action):
-				var player = player_scene.instantiate() as RigidBody2D
+				var player = player_scene.instantiate() as RigidPlayerPlatformer2D
 				player.player_prefix = p
 				player.connected_device = event.device
 				var device_players := device_player_map.get_or_add(event.device, [] as Array[RigidBody2D]) as Array[RigidBody2D]
 				device_players.append(player)
+				player.idled.connect(_on_player_idled)
 				
 				if i < colors.size():
 					player.color = colors[i]
@@ -65,6 +67,9 @@ func try_joining(event: InputEvent) -> RigidBody2D:
 				return player
 	
 	return null
+	
+func _on_player_idled(player: RigidPlayerPlatformer2D) -> void:
+	disable_player(player.player_prefix, player.connected_device)
 	
 func try_disabling(event: InputEvent) -> bool:
 	for i in prefixes.size():
