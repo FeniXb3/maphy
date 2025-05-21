@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://86nioqfghter"]
+[gd_scene load_steps=14 format=3 uid="uid://86nioqfghter"]
 
 [ext_resource type="Script" uid="uid://pem48no5x32q" path="res://rigid_player_platformer_2d.gd" id="1_jwyup"]
 [ext_resource type="Texture2D" uid="uid://b8hoyi14314g" path="res://kenney_simplified-platformer-pack/PNG/Characters Greyscale/platformChar_idle.png" id="1_wad00"]
@@ -130,13 +130,17 @@ _data = {
 &"walk": SubResource("Animation_1wq7o")
 }
 
-[node name="RigidPlayerPlatformer2D" type="RigidBody2D" node_paths=PackedStringArray("timer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k20b2"]
+size = Vector2(50, 20)
+
+[node name="RigidPlayerPlatformer2D" type="RigidBody2D" node_paths=PackedStringArray("grounded_cast", "timer")]
 process_mode = 1
 z_index = 2
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_bhsmj")
 lock_rotation = true
 script = ExtResource("1_jwyup")
+grounded_cast = NodePath("GroundedCast2D")
 color = Color(0.92, 0.92, 0.92, 1)
 SPEED = 350.0
 JUMP_VELOCITY = -560.0
@@ -161,12 +165,10 @@ region_enabled = true
 region_rect = Rect2(20, -10, 96, 96)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 15.5)
 shape = SubResource("CapsuleShape2D_kxp8c")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_kxp8c")
 
@@ -177,26 +179,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_1a7ed")
 }
 
-[node name="LeftRayCast2D" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(-23, 30)
-target_position = Vector2(0, 25)
-
-[node name="CenterRayCast2D" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, 30)
-target_position = Vector2(0, 25)
-
-[node name="RightRayCast2D" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(23, 30)
-target_position = Vector2(0, 25)
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
+
+[node name="GroundedCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_k20b2")
+target_position = Vector2(0, 30)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

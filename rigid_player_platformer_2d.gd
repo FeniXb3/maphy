@@ -7,10 +7,8 @@ signal idled(player: RigidPlayerPlatformer2D)
 @onready var front: Sprite2D = %Front
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
-@onready var left_ray_cast_2d: RayCast2D = %LeftRayCast2D
-@onready var center_ray_cast_2d: RayCast2D = %CenterRayCast2D
-@onready var right_ray_cast_2d: RayCast2D = %RightRayCast2D
 
+@export var grounded_cast: ShapeCast2D
 @export var connected_device: int
 @export var player_prefix: String
 @export var color: Color = Color.WHITE:
@@ -40,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		timer.start()
 	
 	#var jumped = false
-	var is_touching_ground: bool = left_ray_cast_2d.is_colliding() or center_ray_cast_2d.is_colliding() or right_ray_cast_2d.is_colliding()
+	var is_touching_ground: bool = grounded_cast.is_colliding()
 	
 	if is_jump_just_pressed and is_touching_ground:
 		linear_velocity.y = JUMP_VELOCITY
