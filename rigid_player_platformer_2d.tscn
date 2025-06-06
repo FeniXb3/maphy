@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://86nioqfghter"]
+[gd_scene load_steps=16 format=3 uid="uid://86nioqfghter"]
 
 [ext_resource type="Script" uid="uid://pem48no5x32q" path="res://rigid_player_platformer_2d.gd" id="1_jwyup"]
 [ext_resource type="Texture2D" uid="uid://b8hoyi14314g" path="res://kenney_simplified-platformer-pack/PNG/Characters Greyscale/platformChar_idle.png" id="1_wad00"]
@@ -12,7 +12,10 @@ radius = 25.69
 height = 66.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxp8c"]
-size = Vector2(50, 37)
+size = Vector2(34.5, 37)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k20b2"]
+height = 50.0
 
 [sub_resource type="Animation" id="Animation_krwp3"]
 length = 0.001
@@ -131,9 +134,12 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k20b2"]
-size = Vector2(48, 40)
+size = Vector2(48, 15)
 
-[node name="RigidPlayerPlatformer2D" type="RigidBody2D" node_paths=PackedStringArray("grounded_cast", "timer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdfmv"]
+size = Vector2(15.625, 64)
+
+[node name="RigidPlayerPlatformer2D" type="RigidBody2D" node_paths=PackedStringArray("grounded_cast", "facing_cast", "facing_raycasts", "timer")]
 process_mode = 1
 z_index = 2
 collision_layer = 3
@@ -141,6 +147,9 @@ physics_material_override = SubResource("PhysicsMaterial_bhsmj")
 lock_rotation = true
 script = ExtResource("1_jwyup")
 grounded_cast = NodePath("GroundedCast2D")
+facing_cast = NodePath("FacingCast2D")
+facing_raycasts = [NodePath("FacingRayCast2D"), NodePath("FacingRayCast2D2")]
+facing_cast_length = 50.0
 color = Color(0.92, 0.92, 0.92, 1)
 SPEED = 350.0
 JUMP_VELOCITY = -560.0
@@ -172,6 +181,14 @@ shape = SubResource("CapsuleShape2D_kxp8c")
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_kxp8c")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 7)
+shape = SubResource("CapsuleShape2D_k20b2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(16, 7)
+shape = SubResource("CapsuleShape2D_k20b2")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 root_node = NodePath("../Visuals")
@@ -186,6 +203,23 @@ autostart = true
 [node name="GroundedCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(0, 41.54)
 shape = SubResource("RectangleShape2D_k20b2")
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 0)
+
+[node name="FacingCast2D" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(0, 15.52)
+enabled = false
+shape = SubResource("RectangleShape2D_fdfmv")
+target_position = Vector2(30, 0)
+margin = 20.0
+max_results = 128
+
+[node name="FacingRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -18)
+target_position = Vector2(40, 0)
+
+[node name="FacingRayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, 45)
+target_position = Vector2(40, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

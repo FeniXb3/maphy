@@ -9,6 +9,9 @@ signal idled(player: RigidPlayerPlatformer2D)
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 @export var grounded_cast: ShapeCast2D
+@export var facing_cast: ShapeCast2D
+@export var facing_raycasts: Array[RayCast2D]
+@export var facing_cast_length: float = 30
 @export var connected_device: int
 @export var player_prefix: String
 @export var color: Color = Color.WHITE:
@@ -48,10 +51,18 @@ func _physics_process(delta: float) -> void:
 	if direction and allow_movement_in_air or (not allow_movement_in_air and is_touching_ground):
 		#set_axis_velocity(Vector2(direction * SPEED, linear_velocity.y))
 		last_direction = direction
-		linear_velocity.x = direction * SPEED
+		
+		for r in facing_raycasts:
+			r.target_position.x = facing_cast_length if direction > 0 else -facing_cast_length
+		
+		if not facing_raycasts.any(func(r): return r.is_colliding()) or is_touching_ground:
+			linear_velocity.x = direction * SPEED
 	
 	visuals.flip_h = last_direction < 0
 	front.flip_h = visuals.flip_h
+	
+	
+	
 	#scale.x = -1 if (last_direction < 0) else 1
 		
 	#if linear_velocity.y < 0 and not is_touching_ground:
