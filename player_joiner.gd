@@ -22,11 +22,11 @@ func _ready() -> void:
 		add_player_input(device, right_split_joypad_movement_controls, "joy_right")
 
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
-	add_player_input(0, wsad_movement_controls, "wsad_keyboard")
-	add_player_input(0, arrows_movement_controls, "arrows_keyboard")
+	add_player_input(0, wsad_movement_controls, "keyboard_wsad")
+	add_player_input(0, arrows_movement_controls, "keyboard_arrows")
 
 func add_player_input(i: int, movement_controls, infix: String):
-	var prefix = "p_{infix}_{id}_".format({"infix": infix, "id": i})
+	var prefix = "p_{id}_{infix}_".format({"infix": infix, "id": i})
 	if not  prefixes.has(prefix):
 		prefixes.append(prefix)
 	
@@ -43,15 +43,24 @@ func add_player_input(i: int, movement_controls, infix: String):
 			if not InputMap.action_has_event(prefixed_action_name, specific_event):
 				InputMap.action_add_event(prefixed_action_name, specific_event)
 
-func try_joining(event: InputEvent) -> RigidBody2D:
+func is_device_used(device_prefix: String) -> bool:
+	return player_prefixes_taken.any(
+		func (pt: String): return pt.begins_with(device_prefix)
+	)
+
+func try_joining(event: InputEvent, split_joining_allowed: bool) -> RigidBody2D:
 	for i in prefixes.size():
-		var p = prefixes[i]
+		var p = prefixes[i] as String
 		if p in player_prefixes_taken:
 			continue
 		
 		for a in actions:
 			var prefixed_action = "%s%s" % [p, a]
 			if event.is_action(prefixed_action) and Input.is_action_pressed(prefixed_action):
+				var device_prefix := p.replace("right_", "").replace("left_", "")
+				if not split_joining_allowed and (p.ends_with("right_") or is_device_used(device_prefix)):
+					return null
+				
 				var player = player_scene.instantiate() as RigidPlayerPlatformer2D
 				player.player_prefix = p
 				player.connected_device = event.device

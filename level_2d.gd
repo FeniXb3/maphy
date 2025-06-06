@@ -17,6 +17,7 @@ var points: int = 0
 @export var minv: Vector2
 @export var maxv: Vector2
 var joining_allowed: bool = true
+var split_joining_allowed: bool = false
 @export var disable_joining_automatically: bool = false
 var disabling_allowed: bool = true
 @export var expected_points: int = 3
@@ -55,6 +56,8 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("joining_switch"):
 		joining_allowed = not joining_allowed
+	if event.is_action_pressed("split_joining_switch"):
+		split_joining_allowed = not split_joining_allowed
 	if event.is_action_pressed("disabling_switch"):
 		disabling_allowed = not disabling_allowed
 		
@@ -62,7 +65,7 @@ func _input(event: InputEvent) -> void:
 		return
 		
 	if joining_allowed:
-		var player = player_joiner.try_joining(event)
+		var player = player_joiner.try_joining(event, split_joining_allowed)
 		if player:
 			players.append(player)
 			if disable_joining_automatically:
