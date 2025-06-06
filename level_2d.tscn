@@ -41,7 +41,7 @@ spawn_point = NodePath("SpawnPoint")
 
 [node name="PlayerJoiner" parent="." node_paths=PackedStringArray("players_parent", "spawn_point") instance=ExtResource("10_5waku")]
 player_scene = ExtResource("3_jt5jw")
-colors = Array[Color]([Color(0.958333, 0.291992, 0.291992, 1), Color(0.990325, 0.605224, 1, 1), Color(0.714833, 1, 0.849568, 1), Color(1, 0.980031, 0.188712, 1), Color(0, 1, 0.972086, 1), Color(0.993309, 0.744121, 0.44875, 1)])
+colors = Array[Color]([Color(0.184314, 0.309804, 0.309804, 1), Color(0.647059, 0.164706, 0.164706, 1), Color(0, 0.392157, 0, 1), Color(0, 0, 0.501961, 1), Color(1, 0, 0, 1), Color(1, 0.647059, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.980392, 0.603922, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1), Color(0.847059, 0.74902, 0.847059, 1), Color(1, 0, 1, 1), Color(0.117647, 0.564706, 1, 1), Color(0.941176, 0.901961, 0.54902, 1), Color(1, 0.411765, 0.705882, 1)])
 players_parent = NodePath("..")
 spawn_point = NodePath("../SpawnPoint")
 joypad_movement_controls = ExtResource("4_xhro5")
