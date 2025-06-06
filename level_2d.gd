@@ -16,10 +16,23 @@ extends Node2D
 var points: int = 0
 @export var minv: Vector2
 @export var maxv: Vector2
-var joining_allowed: bool = true
-var split_joining_allowed: bool = false
-@export var disable_joining_automatically: bool = false
-var disabling_allowed: bool = true
+var joining_allowed: bool = true:
+	set(value):
+		joining_allowed = value
+		SignalBus.joining_switched.emit(joining_allowed)
+var split_joining_allowed: bool = false:
+	set(value):
+		split_joining_allowed = value
+		SignalBus.split_joining_switched.emit(split_joining_allowed)
+	
+@export var autojoining: bool = false:
+	set(value):
+		autojoining = value
+		SignalBus.autojoining_switched.emit(autojoining)
+var disabling_allowed: bool = true:
+	set(value):
+		disabling_allowed = value
+		SignalBus.disabling_switched.emit(disabling_allowed)
 @export var expected_points: int = 3
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +45,12 @@ func _ready() -> void:
 	SignalBus.add_score.connect(add_point)
 	SignalBus.body_killed.connect(handle_body_killed)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	
+	SignalBus.joining_switched.emit(joining_allowed)
+	SignalBus.disabling_switched.emit(disabling_allowed)
+	SignalBus.split_joining_switched.emit(split_joining_allowed)
+	SignalBus.autojoining_switched.emit(autojoining)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -60,6 +79,8 @@ func _input(event: InputEvent) -> void:
 		split_joining_allowed = not split_joining_allowed
 	if event.is_action_pressed("disabling_switch"):
 		disabling_allowed = not disabling_allowed
+	if event.is_action_pressed("autojoining_switch"):
+		autojoining = not autojoining
 		
 	if get_tree().paused:
 		return
@@ -68,7 +89,7 @@ func _input(event: InputEvent) -> void:
 		var player = player_joiner.try_joining(event, split_joining_allowed)
 		if player:
 			players.append(player)
-			if disable_joining_automatically:
+			if not autojoining:
 				joining_allowed = false
 			
 	
