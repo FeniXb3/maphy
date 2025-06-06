@@ -27,7 +27,9 @@ func _ready() -> void:
 
 func add_player_input(i: int, movement_controls, infix: String):
 	var prefix = "p_{infix}_{id}_".format({"infix": infix, "id": i})
-	prefixes.append(prefix)
+	if not  prefixes.has(prefix):
+		prefixes.append(prefix)
+	
 	for a in actions:
 		var prefixed_action_name = "{prefix}{name}".format({"prefix": prefix, "name": a})
 		var input_events = movement_controls.get(a) as Array[InputEvent]
