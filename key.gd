@@ -26,5 +26,13 @@ func pickup(body: RigidPlayerPlatformer2D) -> void:
 	#position = Vector2(32, 0)
 
 func reset():
-	reparent(start_parent)
-	position = start_position
+	hide()
+	(func ():
+		reparent(start_parent)
+		position = start_position
+		show()
+	).call_deferred()
+
+
+func _on_body_exited(body: Node2D) -> void:
+	body.items.erase(self)
