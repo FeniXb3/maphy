@@ -131,7 +131,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k20b2"]
-size = Vector2(50, 20)
+size = Vector2(48, 40)
 
 [node name="RigidPlayerPlatformer2D" type="RigidBody2D" node_paths=PackedStringArray("grounded_cast", "timer")]
 process_mode = 1
@@ -184,8 +184,8 @@ wait_time = 60.0
 autostart = true
 
 [node name="GroundedCast2D" type="ShapeCast2D" parent="."]
-position = Vector2(0, 19)
+position = Vector2(0, 41.54)
 shape = SubResource("RectangleShape2D_k20b2")
-target_position = Vector2(0, 30)
+target_position = Vector2(0, 20)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

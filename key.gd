@@ -30,6 +30,7 @@ func reset():
 	(func ():
 		reparent(start_parent)
 		position = start_position
+		await get_tree().process_frame
 		show()
 	).call_deferred()
 
