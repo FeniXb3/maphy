@@ -29,6 +29,8 @@ var split_joining_allowed: bool = false:
 	set(value):
 		autojoining = value
 		SignalBus.autojoining_switched.emit(autojoining)
+		if autojoining:
+			joining_allowed = true
 var disabling_allowed: bool = true:
 	set(value):
 		disabling_allowed = value
