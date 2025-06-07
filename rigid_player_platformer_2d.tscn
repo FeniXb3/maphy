@@ -145,6 +145,7 @@ z_index = 2
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_bhsmj")
 lock_rotation = true
+freeze_mode = 1
 script = ExtResource("1_jwyup")
 grounded_cast = NodePath("GroundedCast2D")
 facing_cast = NodePath("FacingCast2D")

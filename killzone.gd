@@ -1,5 +1,5 @@
 extends Area2D
-@onready var timer: Timer = $Timer
+@export var kill_delay: float = 1.0
 var bodies_queue: Array[RigidBody2D]
 
 
@@ -9,9 +9,7 @@ func _on_body_entered(body: Node2D) -> void:
 		item.reset()
 		
 	body.items.clear()
-	
-	timer.start()
-	await timer.timeout
+	await get_tree().create_timer(kill_delay, false).timeout
 	if body != null:
 		SignalBus.body_killed.emit(body)
 

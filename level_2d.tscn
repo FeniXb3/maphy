@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://220yfem0cjvb"]
+[gd_scene load_steps=24 format=3 uid="uid://220yfem0cjvb"]
 
 [ext_resource type="Script" uid="uid://dm5wg8h3n4f5t" path="res://level_2d.gd" id="1_7gmnr"]
 [ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="2_0dtv0"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dxtn33k85mybn" path="res://info_container.gd" id="13_bf485"]
 [ext_resource type="PackedScene" uid="uid://m5aosvvxd44h" path="res://key.tscn" id="13_vdub1"]
 [ext_resource type="PackedScene" uid="uid://c6ufw0tyys3fm" path="res://seasaw.tscn" id="14_2beu6"]
+[ext_resource type="PackedScene" uid="uid://d1anxh6nofqkr" path="res://spawn_point.tscn" id="16_y4dwl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l6jl3"]
 
@@ -41,10 +42,9 @@ player_joiner = NodePath("PlayerJoiner")
 spawn_point = NodePath("SpawnPoint")
 autojoining = true
 
-[node name="PlayerJoiner" parent="." node_paths=PackedStringArray("players_parent", "spawn_point") instance=ExtResource("10_5waku")]
+[node name="PlayerJoiner" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("10_5waku")]
 player_scene = ExtResource("3_jt5jw")
 colors = Array[Color]([Color(0.184314, 0.309804, 0.309804, 1), Color(0.647059, 0.164706, 0.164706, 1), Color(0, 0.392157, 0, 1), Color(0, 0, 0.501961, 1), Color(1, 0, 0, 1), Color(1, 0.647059, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.980392, 0.603922, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1), Color(0.847059, 0.74902, 0.847059, 1), Color(1, 0, 1, 1), Color(0.117647, 0.564706, 1, 1), Color(0.941176, 0.901961, 0.54902, 1), Color(1, 0.411765, 0.705882, 1)])
-players_parent = NodePath("..")
 spawn_point = NodePath("../SpawnPoint")
 joypad_movement_controls = ExtResource("4_xhro5")
 right_split_joypad_movement_controls = ExtResource("5_b1qxx")
@@ -251,9 +251,10 @@ editor_draw_drag_margin = true
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="SpawnPoint" type="Marker2D" parent="."]
+[node name="SpawnPoint" parent="." node_paths=PackedStringArray("players_parent") instance=ExtResource("16_y4dwl")]
 unique_name_in_owner = true
 position = Vector2(1182, 1083)
+players_parent = NodePath("../Players")
 
 [node name="Collectibles" type="Node2D" parent="."]
 

@@ -7,8 +7,7 @@ extends Node
 @export var player_numbers_taken: Array[int] = []
 @export var player_prefixes_taken: Array[String] = []
 @export var prefixes: Array
-@export var players_parent: Node2D
-@export var spawn_point: Marker2D
+@export var spawn_point: SpawnPoint
 @export var joypad_movement_controls: MovementControls
 @export var right_split_joypad_movement_controls: MovementControls
 @export var wsad_movement_controls: MovementControls
@@ -73,8 +72,7 @@ func try_joining(event: InputEvent, split_joining_allowed: bool) -> RigidBody2D:
 				else:
 					player.color = Color.from_hsv((i*75.0/360.0), 1, 1)
 				player_prefixes_taken.append(p)
-				players_parent.add_child(player)
-				player.position = spawn_point.position
+				spawn_point.spawn(player)
 				return player
 	
 	return null

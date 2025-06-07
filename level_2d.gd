@@ -9,7 +9,7 @@ extends Node2D
 @export  var moving_platform: AnimatableBody2D
 
 @export var player_joiner: PlayerJoiner
-@export var spawn_point: Marker2D
+@export var spawn_point: SpawnPoint
 
 @export var players: Array[RigidBody2D]
 
@@ -144,7 +144,4 @@ func update_camera() -> void:
 	background.zoom = camera_2d.zoom.x * 3
 
 func handle_body_killed(body: RigidBody2D) -> void:
-	body.freeze = true
-	body.get_parent()
-	body.position = spawn_point.position
-	body.freeze = false
+	spawn_point.spawn(body)
