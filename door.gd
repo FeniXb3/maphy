@@ -21,5 +21,7 @@ func _on_button_body_entered(_body: Node2D) -> void:
 	button_visuals.play("pressed")
 		
 	tween = create_tween().set_loops()
+	tween.bind_node(connected_plaform)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_STOP)
 	tween.tween_property(connected_plaform, "position", Vector2.UP*-move_difference, move_duration).as_relative()
 	tween.tween_property(connected_plaform, "position", Vector2.UP*move_difference, move_duration).as_relative()
