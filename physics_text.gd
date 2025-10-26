@@ -34,16 +34,18 @@ class_name PhysicsText
 var animation_tween: Tween
 
 func _ready() -> void:
-	rich_text_label.text = text
-	rich_text_label.add_theme_color_override("default_color", color)
-	if rich_text_label.has_theme_font_size_override("normal_font_size"):
-		rich_text_label.remove_theme_font_size_override("normal_font_size")
-	rich_text_label.add_theme_font_size_override("normal_font_size", base_font_size)
+	set_text_parameters()
 	#var shape := collision_shape_2d.shape as RectangleShape2D
 	#shape.size = rich_text_label.get_font("normal_font").get_string_size(text)
 	#call_deferred("update_shape_size")
 	update_shape_size.call_deferred()
 
+func set_text_parameters():
+	rich_text_label.text = text
+	rich_text_label.add_theme_color_override("default_color", color)
+	if rich_text_label.has_theme_font_size_override("normal_font_size"):
+		rich_text_label.remove_theme_font_size_override("normal_font_size")
+	rich_text_label.add_theme_font_size_override("normal_font_size", base_font_size)
 
 func update_shape_size():
 	var shape := collision_shape_2d.shape as RectangleShape2D
@@ -70,5 +72,5 @@ func _physics_process(_delta: float) -> void:
 	#apply_central_force(random_force)
 	#if spring:
 		#spring.look_at(position)
-
+	set_text_parameters()
 	update_shape_size()

@@ -10,7 +10,6 @@ resource_local_to_scene = true
 size = Vector2(10, 10)
 
 [node name="PhysicsText" type="RigidBody2D"]
-position = Vector2(-1, 1)
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_4wh42")
 lock_rotation = true
