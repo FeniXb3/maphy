@@ -86,13 +86,13 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("10_erf2p")
 
 [node name="AtariController" type="Sprite2D" parent="Images"]
-position = Vector2(2559, 960)
-scale = Vector2(0.25, 0.25)
+position = Vector2(2802, 756)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_gaa4c")
 
 [node name="Pong" type="Sprite2D" parent="Images"]
-position = Vector2(739, 1082)
-scale = Vector2(0.25, 0.25)
+position = Vector2(475, 854)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_cxil3")
 
 [node name="Platforms" type="Node" parent="."]
@@ -224,7 +224,7 @@ theme_override_colors/default_color = Color(0.714025, 0.164314, 0.748918, 1)
 text = "ATARI VCS controller had big joystick and a single button"
 
 [node name="2_ QuestionContent3" parent="Items/Texts" instance=ExtResource("14_g4hb5")]
-position = Vector2(3382, 1096)
+position = Vector2(4045, 1141)
 physics_material_override = null
 freeze = true
 text = "NES gamepad had more buttons but was still quite simple"
@@ -369,7 +369,7 @@ position = Vector2(978, 1198)
 position = Vector2(2553, 995)
 
 [node name="CollectableItem3" parent="Collectibles" instance=ExtResource("20_l1wp8")]
-position = Vector2(3473, 978)
+position = Vector2(3563, 1014)
 
 [node name="Door" parent="." node_paths=PackedStringArray("connected_plaform") instance=ExtResource("21_d8ysn")]
 position = Vector2(3738, 1698)
