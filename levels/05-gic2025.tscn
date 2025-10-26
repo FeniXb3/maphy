@@ -1,0 +1,401 @@
+[gd_scene load_steps=31 format=3 uid="uid://bc6s6eyl7jyy0"]
+
+[ext_resource type="Script" uid="uid://dm5wg8h3n4f5t" path="res://level_2d.gd" id="1_66h63"]
+[ext_resource type="PackedScene" uid="uid://db7s5g55fitn7" path="res://player_joiner.tscn" id="2_8bdvt"]
+[ext_resource type="PackedScene" uid="uid://86nioqfghter" path="res://rigid_player_platformer_2d.tscn" id="3_jyiul"]
+[ext_resource type="Resource" uid="uid://dge32oic11p5q" path="res://input/default_joypad_movement_controls.tres" id="4_xfhxt"]
+[ext_resource type="Resource" uid="uid://h4o7n73u1bbg" path="res://input/right_split_joypad_movement_controls.tres" id="5_djb3x"]
+[ext_resource type="Resource" uid="uid://cmqmfm6sjgwss" path="res://input/wsad_movement_controls.tres" id="6_us076"]
+[ext_resource type="Resource" uid="uid://4c18eqfm124q" path="res://input/arrows_movement_controls.tres" id="7_eppds"]
+[ext_resource type="PackedScene" uid="uid://bnxh5txmnw1wo" path="res://background.tscn" id="8_j0x78"]
+[ext_resource type="Texture2D" uid="uid://lvr1qrwdcd4r" path="res://images/Konrad Gadzina-hello-gamedev.jpg" id="9_itgrl"]
+[ext_resource type="Texture2D" uid="uid://d2n0p7q1w0uq6" path="res://images/linkedin QR code.png" id="10_y6g4o"]
+[ext_resource type="PackedScene" uid="uid://k7i7h1pws5ba" path="res://platform_2d.tscn" id="13_mn36y"]
+[ext_resource type="PackedScene" uid="uid://drcrxd78ldl0w" path="res://moving_platform_2d.tscn" id="14_yd4r4"]
+[ext_resource type="PackedScene" uid="uid://d3k1gicobt3tq" path="res://pushable_item.tscn" id="15_3bm5u"]
+[ext_resource type="PackedScene" uid="uid://bongqq32sufnv" path="res://physics_text.tscn" id="16_buxpx"]
+[ext_resource type="Texture2D" uid="uid://dp44ec8tytbtg" path="res://kenney_simplified-platformer-pack/PNG/Items/platformPack_item002.png" id="17_edbt4"]
+[ext_resource type="Script" uid="uid://dxtn33k85mybn" path="res://info_container.gd" id="18_gl7yy"]
+[ext_resource type="Texture2D" uid="uid://b1e5vn5o1m53i" path="res://images/trais-avi-logo-transparent-bg-small.png" id="19_eeho7"]
+[ext_resource type="PackedScene" uid="uid://dk6744h8ftqhm" path="res://killzone.tscn" id="20_vsfhy"]
+[ext_resource type="PackedScene" uid="uid://d1anxh6nofqkr" path="res://spawn_point.tscn" id="21_gfgid"]
+[ext_resource type="PackedScene" uid="uid://livk8ysuwju3" path="res://collectable_item.tscn" id="22_t60mo"]
+[ext_resource type="PackedScene" uid="uid://chrsthm1bq0h2" path="res://door.tscn" id="23_ytjxe"]
+[ext_resource type="PackedScene" uid="uid://m5aosvvxd44h" path="res://key.tscn" id="24_qfey0"]
+[ext_resource type="PackedScene" uid="uid://c6ufw0tyys3fm" path="res://seasaw.tscn" id="25_5bost"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l6jl3"]
+friction = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x33la"]
+resource_local_to_scene = true
+size = Vector2(213, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk6lw"]
+resource_local_to_scene = true
+size = Vector2(407, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6w0g"]
+resource_local_to_scene = true
+size = Vector2(578, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3x2r"]
+resource_local_to_scene = true
+size = Vector2(512, 52)
+
+[sub_resource type="Gradient" id="Gradient_bxs5i"]
+offsets = PackedFloat32Array(0.276151, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gctcs"]
+gradient = SubResource("Gradient_bxs5i")
+width = 2048
+height = 1024
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="GIC2025" type="Node2D" node_paths=PackedStringArray("moving_platform", "player_joiner", "spawn_point")]
+process_mode = 3
+script = ExtResource("1_66h63")
+moving_platform = NodePath("Platforms/SecondSegment/MovingPlatform2D")
+player_joiner = NodePath("PlayerJoiner")
+spawn_point = NodePath("SpawnPoint")
+autojoining = true
+
+[node name="PlayerJoiner" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("2_8bdvt")]
+player_scene = ExtResource("3_jyiul")
+colors = Array[Color]([Color(0.184314, 0.309804, 0.309804, 1), Color(0.647059, 0.164706, 0.164706, 1), Color(0, 0.392157, 0, 1), Color(0, 0, 0.501961, 1), Color(1, 0, 0, 1), Color(1, 0.647059, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.980392, 0.603922, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1), Color(0.847059, 0.74902, 0.847059, 1), Color(1, 0, 1, 1), Color(0.117647, 0.564706, 1, 1), Color(0.941176, 0.901961, 0.54902, 1), Color(1, 0.411765, 0.705882, 1)])
+spawn_point = NodePath("../SpawnPoint")
+joypad_movement_controls = ExtResource("4_xfhxt")
+right_split_joypad_movement_controls = ExtResource("5_djb3x")
+wsad_movement_controls = ExtResource("6_us076")
+arrows_movement_controls = ExtResource("7_eppds")
+
+[node name="Background" parent="." instance=ExtResource("8_j0x78")]
+metadata/_edit_lock_ = true
+
+[node name="Images" type="Node2D" parent="."]
+
+[node name="KonradGadzinaHelloGamedev" type="Sprite2D" parent="Images"]
+position = Vector2(-1045, 646)
+texture = ExtResource("9_itgrl")
+
+[node name="LinkedinQrCode" type="Sprite2D" parent="Images"]
+position = Vector2(-901, 372)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_y6g4o")
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="FirtSegment" type="Node2D" parent="Platforms"]
+
+[node name="GroundPlatform2D" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(421, 1280)
+scale = Vector2(40, 1)
+visual_scale = Vector2(40, 1)
+
+[node name="Platform2D7" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(-226, 1087)
+scale = Vector2(3, 1)
+visual_scale = Vector2(3, 1)
+
+[node name="Platform2D8" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(-511.00003, 954)
+scale = Vector2(3, 1)
+visual_scale = Vector2(3, 1)
+
+[node name="Platform2D9" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(-765, 855)
+scale = Vector2(3, 1)
+visual_scale = Vector2(3, 1)
+
+[node name="Platform2D11" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(-537, 709)
+scale = Vector2(3, 1)
+visual_scale = Vector2(3, 1)
+
+[node name="Platform2D12" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(-762, 569)
+scale = Vector2(3, 1)
+visual_scale = Vector2(3, 1)
+
+[node name="Platform2D4" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(363, 1148)
+
+[node name="Platform2D6" parent="Platforms/FirtSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(-11, 1216)
+
+[node name="FirtSegment2" type="Node2D" parent="Platforms"]
+position = Vector2(2225, 0)
+
+[node name="Platform2D4" parent="Platforms/FirtSegment2" instance=ExtResource("13_mn36y")]
+position = Vector2(363, 1148)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
+[node name="Platform2D5" parent="Platforms/FirtSegment2" instance=ExtResource("13_mn36y")]
+position = Vector2(77, 1478)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
+[node name="SecondSegment" type="Node2D" parent="Platforms"]
+position = Vector2(64, 0)
+
+[node name="GroundPlatform2D2" parent="Platforms/SecondSegment" instance=ExtResource("13_mn36y")]
+position = Vector2(2880, 1280)
+scale = Vector2(30, 1)
+visual_scale = Vector2(30, 1)
+
+[node name="MovingPlatform2D" parent="Platforms/SecondSegment" instance=ExtResource("14_yd4r4")]
+position = Vector2(4327, 1572)
+scale = Vector2(4, 1)
+visual_scale = Vector2(4, 1)
+
+[node name="Items" type="Node" parent="."]
+
+[node name="PushableItem" parent="Items" instance=ExtResource("15_3bm5u")]
+position = Vector2(1012, 856)
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
+[node name="PushableItem3" parent="Items" instance=ExtResource("15_3bm5u")]
+process_mode = 4
+visible = false
+position = Vector2(1101, 856)
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
+[node name="PushableItem4" parent="Items" instance=ExtResource("15_3bm5u")]
+process_mode = 4
+visible = false
+position = Vector2(1179, 856)
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
+[node name="PushableItem2" parent="Items" instance=ExtResource("15_3bm5u")]
+visible = false
+modulate = Color(0.736979, 0.186164, 0.53903, 1)
+position = Vector2(205, 829)
+mass = 25.0
+physics_material_override = SubResource("PhysicsMaterial_l6jl3")
+
+[node name="Texts" type="Node2D" parent="Items"]
+
+[node name="TitlePhysicsText" parent="Items/Texts" instance=ExtResource("16_buxpx")]
+position = Vector2(1653, 974)
+physics_material_override = null
+freeze = true
+text = "More accessible controllers"
+color = Color(0.714025, 0.164314, 0.748918, 1)
+
+[node name="1_ Question" parent="Items/Texts" instance=ExtResource("16_buxpx")]
+position = Vector2(1002, 1384)
+physics_material_override = null
+freeze = true
+text = "Who needs it?"
+color = Color(0.714025, 0.164314, 0.748918, 1)
+
+[node name="CollisionShape2D" parent="Items/Texts/1_ Question" index="0"]
+shape = SubResource("RectangleShape2D_x33la")
+
+[node name="RichTextLabel" parent="Items/Texts/1_ Question" index="2"]
+theme_override_colors/default_color = Color(0.714025, 0.164314, 0.748918, 1)
+text = "Who needs it?"
+
+[node name="2_ QuestionContent2" parent="Items/Texts" instance=ExtResource("16_buxpx")]
+position = Vector2(2372, 1365)
+physics_material_override = null
+freeze = true
+text = "People with lmited mobility"
+color = Color(0.714025, 0.164314, 0.748918, 1)
+
+[node name="CollisionShape2D" parent="Items/Texts/2_ QuestionContent2" index="0"]
+shape = SubResource("RectangleShape2D_yk6lw")
+
+[node name="RichTextLabel" parent="Items/Texts/2_ QuestionContent2" index="2"]
+theme_override_colors/default_color = Color(0.714025, 0.164314, 0.748918, 1)
+text = "People with lmited mobility"
+
+[node name="2_ QuestionContent4" parent="Items/Texts" instance=ExtResource("16_buxpx")]
+position = Vector2(3020, 1023)
+rotation = -0.0140552
+physics_material_override = null
+freeze = true
+text = "People doing other things while playing"
+color = Color(0.714025, 0.164314, 0.748918, 1)
+
+[node name="CollisionShape2D" parent="Items/Texts/2_ QuestionContent4" index="0"]
+shape = SubResource("RectangleShape2D_n6w0g")
+
+[node name="RichTextLabel" parent="Items/Texts/2_ QuestionContent4" index="2"]
+theme_override_colors/default_color = Color(0.714025, 0.164314, 0.748918, 1)
+text = "People doing other things while playing"
+
+[node name="2_ QuestionContent3" parent="Items/Texts" instance=ExtResource("16_buxpx")]
+position = Vector2(465, 860)
+physics_material_override = null
+freeze = true
+text = "People with no or deformed hands"
+color = Color(0.714025, 0.164314, 0.748918, 1)
+
+[node name="CollisionShape2D" parent="Items/Texts/2_ QuestionContent3" index="0"]
+shape = SubResource("RectangleShape2D_d3x2r")
+
+[node name="RichTextLabel" parent="Items/Texts/2_ QuestionContent3" index="2"]
+theme_override_colors/default_color = Color(0.714025, 0.164314, 0.748918, 1)
+text = "People with no or deformed hands"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_edbt4")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Level completed!"
+horizontal_alignment = 1
+
+[node name="InfoContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" node_paths=PackedStringArray("disabling_status_label", "auto_joining_status_label", "joining_status_label", "split_joining_status_label")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 2
+script = ExtResource("18_gl7yy")
+disabling_status_label = NodePath("DisablingStatusLabel")
+auto_joining_status_label = NodePath("AutoJoiningStatusLabel")
+joining_status_label = NodePath("JoiningStatusLabel")
+split_joining_status_label = NodePath("SplitJoiningStatusLabel")
+
+[node name="JoiningStatusLabel" type="Label" parent="CanvasLayer/MarginContainer/InfoContainer"]
+layout_mode = 2
+text = "Joining"
+
+[node name="SplitJoiningStatusLabel" type="Label" parent="CanvasLayer/MarginContainer/InfoContainer"]
+layout_mode = 2
+text = "Joining"
+
+[node name="AutoJoiningStatusLabel" type="Label" parent="CanvasLayer/MarginContainer/InfoContainer"]
+layout_mode = 2
+text = "Autojoining"
+
+[node name="DisablingStatusLabel" type="Label" parent="CanvasLayer/MarginContainer/InfoContainer"]
+layout_mode = 2
+text = "Joining"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TriasLogo" type="TextureRect" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("19_eeho7")
+stretch_mode = 2
+
+[node name="Killzone" parent="." instance=ExtResource("20_vsfhy")]
+position = Vector2(1528, 1927)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="Killzone"]
+scroll_offset = Vector2(0, -512)
+repeat_size = Vector2(2048, 0)
+repeat_times = 10
+
+[node name="TextureRect" type="TextureRect" parent="Killzone/Parallax2D"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_gctcs")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1649, 982)
+process_callback = 0
+limit_bottom = 2000
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = -1.0
+drag_left_margin = 0.0
+drag_right_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="SpawnPoint" parent="." node_paths=PackedStringArray("players_parent") instance=ExtResource("21_gfgid")]
+unique_name_in_owner = true
+position = Vector2(1182, 1083)
+players_parent = NodePath("../Players")
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="CollectableItem" parent="Collectibles" instance=ExtResource("22_t60mo")]
+position = Vector2(978, 1198)
+
+[node name="CollectableItem2" parent="Collectibles" instance=ExtResource("22_t60mo")]
+position = Vector2(355, 1056)
+
+[node name="CollectableItem3" parent="Collectibles" instance=ExtResource("22_t60mo")]
+position = Vector2(2950, 891)
+
+[node name="Door" parent="." node_paths=PackedStringArray("connected_plaform") instance=ExtResource("23_ytjxe")]
+position = Vector2(3738, 1698)
+connected_plaform = NodePath("../Platforms/SecondSegment/MovingPlatform2D")
+move_difference = 600.0
+activate_without_key = false
+
+[node name="Key" parent="." instance=ExtResource("24_qfey0")]
+position = Vector2(-286, 1714)
+
+[node name="Seasaw" parent="." instance=ExtResource("25_5bost")]
+process_mode = 4
+visible = false
+position = Vector2(3483, 1248)
+
+[node name="Seasaw2" parent="." instance=ExtResource("25_5bost")]
+process_mode = 4
+visible = false
+position = Vector2(-10, 1184)
+
+[editable path="Items/Texts/1_ Question"]
+[editable path="Items/Texts/2_ QuestionContent2"]
+[editable path="Items/Texts/2_ QuestionContent4"]
+[editable path="Items/Texts/2_ QuestionContent3"]
