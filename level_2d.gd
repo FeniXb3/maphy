@@ -37,6 +37,9 @@ var disabling_allowed: bool = true:
 		SignalBus.disabling_switched.emit(disabling_allowed)
 @export var expected_points: int = 3
 
+@export var level_switch_delay: float = 5
+@export var next_level: PackedScene
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var space = get_world_2d().space
@@ -113,6 +116,9 @@ func add_point() -> void:
 	
 	if points >= expected_points:
 		win_label.show()
+		if next_level != null:
+			await await get_tree().create_timer(level_switch_delay).timeout
+			get_tree().change_scene_to_packed(next_level)
 
 func set_players_edge_positions() -> void:
 	if players[0] == null:
