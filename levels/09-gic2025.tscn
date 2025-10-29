@@ -1,7 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://daklper7ot2jb"]
+[gd_scene load_steps=29 format=3 uid="uid://daklper7ot2jb"]
 
 [ext_resource type="Script" uid="uid://dm5wg8h3n4f5t" path="res://level_2d.gd" id="1_7ue4k"]
-[ext_resource type="PackedScene" uid="uid://mtpt1pf1w5c3" path="res://levels/04-gic2025.tscn" id="2_ky5d8"]
 [ext_resource type="PackedScene" uid="uid://db7s5g55fitn7" path="res://player_joiner.tscn" id="3_qr1sg"]
 [ext_resource type="PackedScene" uid="uid://86nioqfghter" path="res://rigid_player_platformer_2d.tscn" id="4_r3v6a"]
 [ext_resource type="Resource" uid="uid://dge32oic11p5q" path="res://input/default_joypad_movement_controls.tres" id="5_8g3nn"]
@@ -54,7 +53,6 @@ moving_platform = NodePath("Platforms/SecondSegment/MovingPlatform2D")
 player_joiner = NodePath("PlayerJoiner")
 spawn_point = NodePath("SpawnPoint")
 autojoining = true
-next_level = ExtResource("2_ky5d8")
 
 [node name="PlayerJoiner" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_qr1sg")]
 player_scene = ExtResource("4_r3v6a")
